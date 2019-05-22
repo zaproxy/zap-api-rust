@@ -70,7 +70,6 @@ impl From<serde_json::error::Error> for ZapApiError {
     }
 }
 
-//pub fn call<S: ::std::hash::BuildHasher>(service: &ZapService, component: &str, calltype: &str, method: &str, _params: HashMap<String, String>) -> Result<Value, ZapApiError> {
 pub fn call(
     service: &ZapService,
     component: &str,
@@ -89,13 +88,6 @@ pub fn call(
         }
     }
 
-    println!(
-        "Component {}, calltype {}, method {}",
-        component, calltype, method
-    );
-    println!("Url {}", url);
-
-    //let text = reqwest::get("http://localhost:8090/JSON/core/view/version/")?
     let client = reqwest::Client::new();
     let text = client
         .get(&url)
