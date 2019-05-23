@@ -3,6 +3,10 @@ name = "zap_api"
 version = "0.0.1"
 authors = ["Simon Bennetts <psiinon@gmail.com>"]
 edition = "2018"
+description = "The Rust implementation to access the OWASP ZAP API"
+repository = "https://github.com/zaproxy/zap-api-rust"
+keywords = ["owasp", "zap", "zaproxy", "api"]
+license = "Apache 2.0"
 
 [dependencies]
 reqwest = "0.9.17"
