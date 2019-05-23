@@ -5,8 +5,6 @@ about OWASP ZAP consult the (main) [OWASP ZAP project](https://github.com/zaprox
 
 This project is at a very early stage and should not be used in production!
 
-Once this project has stabilized then the plan is to move it to https://github.com/zaproxy
-
 ## Getting Help
 
 For help using OWASP ZAP API refer to:
