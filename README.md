@@ -24,4 +24,4 @@ This project uses Cargo:
 
 ### Installing
 
-TBA
+This API is available via https://crates.io/crates/zap_api
