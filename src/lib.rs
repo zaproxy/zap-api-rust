@@ -21,7 +21,9 @@ use std::collections::HashMap;
 trait Serialize {}
 
 pub mod acsrf;
+pub mod ajax_spider;
 pub mod alert;
+pub mod alert_filter;
 pub mod ascan;
 pub mod authentication;
 pub mod authorization;
@@ -31,14 +33,23 @@ pub mod context;
 pub mod core;
 pub mod forced_user;
 pub mod http_sessions;
+pub mod import_log_files;
+pub mod importurls;
+pub mod openapi;
 pub mod params;
+pub mod pnh;
 pub mod pscan;
+pub mod replacer;
+pub mod reveal;
 pub mod script;
 pub mod search;
+pub mod selenium;
 pub mod session_management;
+pub mod soap;
 pub mod spider;
 pub mod stats;
 pub mod users;
+pub mod websocket;
 
 #[derive(Debug)]
 pub struct ZapService {
