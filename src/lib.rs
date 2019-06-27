@@ -81,6 +81,61 @@ impl From<serde_json::error::Error> for ZapApiError {
     }
 }
 
+pub fn call_other(
+    service: &ZapService,
+    component: &str,
+    calltype: &str,
+    method: &str,
+    _params: HashMap<String, String>,
+) -> Result<String, ZapApiError> {
+    let mut url = [&service.url, "OTHER", component, calltype, method, ""].join("/");
+    if _params.keys().len() > 0 {
+        url.push_str("?");
+        for (key, value) in _params {
+            url.push_str(&key);
+            url.push_str("=");
+            url.push_str(&value);
+            url.push_str("&");
+        }
+    }
+
+    let client = reqwest::Client::new();
+    let text = client
+        .get(&url)
+        .header("X-ZAP-API-Key", &*service.api_key)
+        .send()?
+        .text()?;
+    Ok(text)
+}
+
+pub fn call_other_json(
+    service: &ZapService,
+    component: &str,
+    calltype: &str,
+    method: &str,
+    _params: HashMap<String, String>,
+) -> Result<Value, ZapApiError> {
+    let mut url = [&service.url, "OTHER", component, calltype, method, ""].join("/");
+    if _params.keys().len() > 0 {
+        url.push_str("?");
+        for (key, value) in _params {
+            url.push_str(&key);
+            url.push_str("=");
+            url.push_str(&value);
+            url.push_str("&");
+        }
+    }
+
+    let client = reqwest::Client::new();
+    let text = client
+        .get(&url)
+        .header("X-ZAP-API-Key", &*service.api_key)
+        .send()?
+        .text()?;
+    let json = serde_json::from_str(&text)?;
+    Ok(json)
+}
+
 pub fn call(
     service: &ZapService,
     component: &str,
