@@ -928,39 +928,39 @@ pub fn set_option_use_proxy_chain_auth(
     )
 }
 
-pub fn proxy_pac(service: &ZapService) -> Result<String, ZapApiError> {
+pub fn proxy_pac(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call_other(service, "core", "other", "proxy.pac", params)
+    super::call(service, "core", "other", "proxy.pac", params)
 }
 
 /**
  * Gets the Root CA certificate used by the local proxies.
 */
-pub fn rootcert(service: &ZapService) -> Result<String, ZapApiError> {
+pub fn rootcert(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call_other(service, "core", "other", "rootcert", params)
+    super::call(service, "core", "other", "rootcert", params)
 }
 
-pub fn setproxy(service: &ZapService, proxy: String) -> Result<String, ZapApiError> {
+pub fn setproxy(service: &ZapService, proxy: String) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
     params.insert("proxy".to_string(), proxy);
-    super::call_other(service, "core", "other", "setproxy", params)
+    super::call(service, "core", "other", "setproxy", params)
 }
 
 /**
  * Generates a report in XML format
 */
-pub fn xmlreport(service: &ZapService) -> Result<String, ZapApiError> {
+pub fn xmlreport(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call_other(service, "core", "other", "xmlreport", params)
+    super::call(service, "core", "other", "xmlreport", params)
 }
 
 /**
  * Generates a report in HTML format
 */
-pub fn htmlreport(service: &ZapService) -> Result<String, ZapApiError> {
+pub fn htmlreport(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call_other(service, "core", "other", "htmlreport", params)
+    super::call(service, "core", "other", "htmlreport", params)
 }
 
 /**
@@ -968,15 +968,15 @@ pub fn htmlreport(service: &ZapService) -> Result<String, ZapApiError> {
 */
 pub fn jsonreport(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call_other_json(service, "core", "other", "jsonreport", params)
+    super::call(service, "core", "other", "jsonreport", params)
 }
 
 /**
  * Generates a report in Markdown format
 */
-pub fn mdreport(service: &ZapService) -> Result<String, ZapApiError> {
+pub fn mdreport(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call_other(service, "core", "other", "mdreport", params)
+    super::call(service, "core", "other", "mdreport", params)
 }
 
 /**
@@ -985,7 +985,7 @@ pub fn mdreport(service: &ZapService) -> Result<String, ZapApiError> {
 pub fn message_har(service: &ZapService, id: String) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
     params.insert("id".to_string(), id);
-    super::call_other_json(service, "core", "other", "messageHar", params)
+    super::call(service, "core", "other", "messageHar", params)
 }
 
 /**
@@ -1001,7 +1001,7 @@ pub fn messages_har(
     params.insert("baseurl".to_string(), baseurl);
     params.insert("start".to_string(), start);
     params.insert("count".to_string(), count);
-    super::call_other_json(service, "core", "other", "messagesHar", params)
+    super::call(service, "core", "other", "messagesHar", params)
 }
 
 /**
@@ -1010,7 +1010,7 @@ pub fn messages_har(
 pub fn messages_har_by_id(service: &ZapService, ids: String) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
     params.insert("ids".to_string(), ids);
-    super::call_other_json(service, "core", "other", "messagesHarById", params)
+    super::call(service, "core", "other", "messagesHarById", params)
 }
 
 /**
@@ -1024,5 +1024,5 @@ pub fn send_har_request(
     let mut params = HashMap::new();
     params.insert("request".to_string(), request);
     params.insert("followRedirects".to_string(), followredirects);
-    super::call_other_json(service, "core", "other", "sendHarRequest", params)
+    super::call(service, "core", "other", "sendHarRequest", params)
 }
