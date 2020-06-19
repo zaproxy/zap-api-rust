@@ -9,8 +9,8 @@ This project is at a very early stage and should not be used in production!
 
 For help using OWASP ZAP API refer to:
   * [Examples](examples) - collection of examples using the library;
+  * [API Documentation](https://www.zaproxy.org/docs/api/);
   * [OWASP ZAP User Group](https://groups.google.com/group/zaproxy-users) - for asking questions;
-  * IRC: irc.mozilla.org #websectools (eg [using Mibbit](http://chat.mibbit.com/?server=irc.mozilla.org%3A%2B6697&channel=%23websectools)) - chat with core ZAP developers (European office hours usually best)
   
 ## Issues
 
