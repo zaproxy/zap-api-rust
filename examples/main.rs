@@ -51,6 +51,7 @@ fn main() -> Result<(), ZapApiError> {
     version(&service).await?;
     spider(&service, &target_url).await?;
     scan(&service, &target_url).await?;
+    alerts(&service, &target_url).await?;
 // Get the ZAP version
 async fn version(service: &ZapService) -> Result<(), ZapApiError> {
     let res = zap_api::core::version(service).await?;
@@ -114,7 +115,30 @@ async fn scan(service: &ZapService, target_url: &str) -> Result<(), ZapApiError>
     Ok(())
 }
 
-    // TODO display alerts
+// Alerts
+async fn alerts(service: &ZapService, baseurl: &str) -> Result<(), ZapApiError> {
+    let res = zap_api::alert::alerts(service, baseurl, "", "", "").await?;
+    let alert_data: ZapAlerts = serde_json::from_value(res).unwrap();
+
+    println!("Number of alerts: {}", alert_data.alerts.len());
+    alert_data.alerts.into_iter().for_each(|alert| {
+        println!(
+            "ID: {}\tConfidence: {}\tAlert: {}",
+            alert.id, alert.confidence, alert.alert
+        )
+    });
 
     Ok(())
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+struct ZapAlerts {
+    alerts: Vec<Alerts>,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+struct Alerts {
+    id: String,
+    alert: String,
+    confidence: String,
 }
