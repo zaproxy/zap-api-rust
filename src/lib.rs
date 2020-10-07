@@ -189,18 +189,13 @@ pub fn call(
     _params: HashMap<String, String>,
 ) -> Result<Value, ZapApiError> {
     let mut url = [&service.url, "JSON", component, calltype, method, ""].join("/");
-    if _params.keys().len() > 0 {
-        url.push_str("?");
-        for (key, value) in _params {
-            url.push_str(&key);
-            url.push_str("=");
-            url.push_str(&value);
-            url.push_str("&");
-        }
-    }
-
-    let client = reqwest::Client::new();
-    let text = client
+    url.push_str("?");
+    let url_params = params
+        .into_iter()
+        .map(|(key, value)| format!("{}={}", key, value))
+        .collect::<Vec<String>>()
+        .join("&");
+    url.push_str(&url_params);
         .get(&url)
         .header("X-ZAP-API-Key", &*service.api_key)
         .send()?
