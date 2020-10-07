@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2019 the ZAP development team
+ * Copyright 2020 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,905 +17,774 @@
  * limitations under the License.
  */
 
+
 use super::ZapApiError;
 use super::ZapService;
 use serde_json::Value;
 use std::collections::HashMap;
 
+
 /**
  * This file was automatically generated.
  */
-pub fn status(service: &ZapService, scanid: String) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn status(service: &ZapService, scanid: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("scanId".to_string(), scanid);
-    super::call(service, "ascan", "view", "status", params)
+    params.insert("scanId".to_string(), scanid.to_string());
+    super::call(service, "ascan", "view", "status", params).await
 }
 
-pub fn scan_progress(service: &ZapService, scanid: String) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn scan_progress(service: &ZapService, scanid: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("scanId".to_string(), scanid);
-    super::call(service, "ascan", "view", "scanProgress", params)
+    params.insert("scanId".to_string(), scanid.to_string());
+    super::call(service, "ascan", "view", "scanProgress", params).await
 }
 
 /**
  * Gets the IDs of the messages sent during the scan with the given ID. A message can be obtained with 'message' core view.
 */
-pub fn messages_ids(service: &ZapService, scanid: String) -> Result<Value, ZapApiError> {
+pub async fn messages_ids(service: &ZapService, scanid: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("scanId".to_string(), scanid);
-    super::call(service, "ascan", "view", "messagesIds", params)
+    params.insert("scanId".to_string(), scanid.to_string());
+    super::call(service, "ascan", "view", "messagesIds", params).await
 }
 
 /**
  * Gets the IDs of the alerts raised during the scan with the given ID. An alert can be obtained with 'alert' core view.
 */
-pub fn alerts_ids(service: &ZapService, scanid: String) -> Result<Value, ZapApiError> {
+pub async fn alerts_ids(service: &ZapService, scanid: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("scanId".to_string(), scanid);
-    super::call(service, "ascan", "view", "alertsIds", params)
+    params.insert("scanId".to_string(), scanid.to_string());
+    super::call(service, "ascan", "view", "alertsIds", params).await
 }
 
-pub fn scans(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn scans(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ascan", "view", "scans", params)
+    super::call(service, "ascan", "view", "scans", params).await
 }
 
-pub fn scan_policy_names(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn scan_policy_names(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ascan", "view", "scanPolicyNames", params)
+    super::call(service, "ascan", "view", "scanPolicyNames", params).await
 }
 
 /**
  * Gets the regexes of URLs excluded from the active scans.
 */
-pub fn excluded_from_scan(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn excluded_from_scan(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ascan", "view", "excludedFromScan", params)
+    super::call(service, "ascan", "view", "excludedFromScan", params).await
 }
 
 /**
  * Gets the scanners, optionally, of the given scan policy and/or scanner policy/category ID.
 */
-pub fn scanners(
-    service: &ZapService,
-    scanpolicyname: String,
-    policyid: String,
-) -> Result<Value, ZapApiError> {
+pub async fn scanners(service: &ZapService, scanpolicyname: &str, policyid: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("scanPolicyName".to_string(), scanpolicyname);
-    params.insert("policyId".to_string(), policyid);
-    super::call(service, "ascan", "view", "scanners", params)
+    params.insert("scanPolicyName".to_string(), scanpolicyname.to_string());
+    params.insert("policyId".to_string(), policyid.to_string());
+    super::call(service, "ascan", "view", "scanners", params).await
 }
 
-pub fn policies(
-    service: &ZapService,
-    scanpolicyname: String,
-    policyid: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn policies(service: &ZapService, scanpolicyname: &str, policyid: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("scanPolicyName".to_string(), scanpolicyname);
-    params.insert("policyId".to_string(), policyid);
-    super::call(service, "ascan", "view", "policies", params)
+    params.insert("scanPolicyName".to_string(), scanpolicyname.to_string());
+    params.insert("policyId".to_string(), policyid.to_string());
+    super::call(service, "ascan", "view", "policies", params).await
 }
 
-pub fn attack_mode_queue(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn attack_mode_queue(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ascan", "view", "attackModeQueue", params)
+    super::call(service, "ascan", "view", "attackModeQueue", params).await
 }
 
 /**
  * Gets all the parameters that are excluded. For each parameter the following are shown: the name, the URL, and the parameter type.
 */
-pub fn excluded_params(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn excluded_params(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ascan", "view", "excludedParams", params)
+    super::call(service, "ascan", "view", "excludedParams", params).await
 }
 
 /**
  * Use view excludedParams instead.
- * Deprecated
 */
-pub fn option_excluded_param_list(service: &ZapService) -> Result<Value, ZapApiError> {
+#[deprecated]
+pub async fn option_excluded_param_list(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ascan", "view", "optionExcludedParamList", params)
+    super::call(service, "ascan", "view", "optionExcludedParamList", params).await
 }
 
 /**
  * Gets all the types of excluded parameters. For each type the following are shown: the ID and the name.
 */
-pub fn excluded_param_types(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn excluded_param_types(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ascan", "view", "excludedParamTypes", params)
+    super::call(service, "ascan", "view", "excludedParamTypes", params).await
 }
 
-pub fn option_attack_policy(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_attack_policy(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ascan", "view", "optionAttackPolicy", params)
+    super::call(service, "ascan", "view", "optionAttackPolicy", params).await
 }
 
-pub fn option_default_policy(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_default_policy(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ascan", "view", "optionDefaultPolicy", params)
+    super::call(service, "ascan", "view", "optionDefaultPolicy", params).await
 }
 
-pub fn option_delay_in_ms(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_delay_in_ms(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ascan", "view", "optionDelayInMs", params)
+    super::call(service, "ascan", "view", "optionDelayInMs", params).await
 }
 
-pub fn option_handle_anti_csrf_tokens(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_handle_anti_csrf_tokens(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(
-        service,
-        "ascan",
-        "view",
-        "optionHandleAntiCSRFTokens",
-        params,
-    )
+    super::call(service, "ascan", "view", "optionHandleAntiCSRFTokens", params).await
 }
 
-pub fn option_host_per_scan(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_host_per_scan(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ascan", "view", "optionHostPerScan", params)
+    super::call(service, "ascan", "view", "optionHostPerScan", params).await
 }
 
-pub fn option_max_chart_time_in_mins(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_max_chart_time_in_mins(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ascan", "view", "optionMaxChartTimeInMins", params)
+    super::call(service, "ascan", "view", "optionMaxChartTimeInMins", params).await
 }
 
-pub fn option_max_results_to_list(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_max_results_to_list(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ascan", "view", "optionMaxResultsToList", params)
+    super::call(service, "ascan", "view", "optionMaxResultsToList", params).await
 }
 
-pub fn option_max_rule_duration_in_mins(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_max_rule_duration_in_mins(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(
-        service,
-        "ascan",
-        "view",
-        "optionMaxRuleDurationInMins",
-        params,
-    )
+    super::call(service, "ascan", "view", "optionMaxRuleDurationInMins", params).await
 }
 
-pub fn option_max_scan_duration_in_mins(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_max_scan_duration_in_mins(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(
-        service,
-        "ascan",
-        "view",
-        "optionMaxScanDurationInMins",
-        params,
-    )
+    super::call(service, "ascan", "view", "optionMaxScanDurationInMins", params).await
 }
 
-pub fn option_max_scans_in_ui(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_max_scans_in_ui(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ascan", "view", "optionMaxScansInUI", params)
+    super::call(service, "ascan", "view", "optionMaxScansInUI", params).await
 }
 
-pub fn option_target_params_enabled_rpc(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_target_params_enabled_rpc(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(
-        service,
-        "ascan",
-        "view",
-        "optionTargetParamsEnabledRPC",
-        params,
-    )
+    super::call(service, "ascan", "view", "optionTargetParamsEnabledRPC", params).await
 }
 
-pub fn option_target_params_injectable(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_target_params_injectable(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(
-        service,
-        "ascan",
-        "view",
-        "optionTargetParamsInjectable",
-        params,
-    )
+    super::call(service, "ascan", "view", "optionTargetParamsInjectable", params).await
 }
 
-pub fn option_thread_per_host(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_thread_per_host(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ascan", "view", "optionThreadPerHost", params)
+    super::call(service, "ascan", "view", "optionThreadPerHost", params).await
 }
 
 /**
  * Tells whether or not the active scanner should add a query parameter to GET request that don't have parameters to start with.
 */
-pub fn option_add_query_param(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn option_add_query_param(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ascan", "view", "optionAddQueryParam", params)
+    super::call(service, "ascan", "view", "optionAddQueryParam", params).await
 }
 
-pub fn option_allow_attack_on_start(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_allow_attack_on_start(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ascan", "view", "optionAllowAttackOnStart", params)
+    super::call(service, "ascan", "view", "optionAllowAttackOnStart", params).await
 }
 
 /**
  * Tells whether or not the active scanner should inject the HTTP request header X-ZAP-Scan-ID, with the ID of the scanner that's sending the requests.
 */
-pub fn option_inject_plugin_id_in_header(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn option_inject_plugin_id_in_header(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(
-        service,
-        "ascan",
-        "view",
-        "optionInjectPluginIdInHeader",
-        params,
-    )
+    super::call(service, "ascan", "view", "optionInjectPluginIdInHeader", params).await
 }
 
-pub fn option_prompt_in_attack_mode(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_prompt_in_attack_mode(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ascan", "view", "optionPromptInAttackMode", params)
+    super::call(service, "ascan", "view", "optionPromptInAttackMode", params).await
 }
 
-pub fn option_prompt_to_clear_finished_scans(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_prompt_to_clear_finished_scans(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(
-        service,
-        "ascan",
-        "view",
-        "optionPromptToClearFinishedScans",
-        params,
-    )
+    super::call(service, "ascan", "view", "optionPromptToClearFinishedScans", params).await
 }
 
-pub fn option_rescan_in_attack_mode(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_rescan_in_attack_mode(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ascan", "view", "optionRescanInAttackMode", params)
+    super::call(service, "ascan", "view", "optionRescanInAttackMode", params).await
 }
 
 /**
  * Tells whether or not the HTTP Headers of all requests should be scanned. Not just requests that send parameters, through the query or request body.
 */
-pub fn option_scan_headers_all_requests(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn option_scan_headers_all_requests(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(
-        service,
-        "ascan",
-        "view",
-        "optionScanHeadersAllRequests",
-        params,
-    )
+    super::call(service, "ascan", "view", "optionScanHeadersAllRequests", params).await
 }
 
-pub fn option_show_advanced_dialog(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_show_advanced_dialog(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ascan", "view", "optionShowAdvancedDialog", params)
+    super::call(service, "ascan", "view", "optionShowAdvancedDialog", params).await
 }
 
 /**
  * Runs the active scanner against the given URL and/or Context. Optionally, the 'recurse' parameter can be used to scan URLs under the given URL, the parameter 'inScopeOnly' can be used to constrain the scan to URLs that are in scope (ignored if a Context is specified), the parameter 'scanPolicyName' allows to specify the scan policy (if none is given it uses the default scan policy), the parameters 'method' and 'postData' allow to select a given request in conjunction with the given URL.
 */
 #[allow(clippy::too_many_arguments)]
-pub fn scan(
-    service: &ZapService,
-    url: String,
-    recurse: String,
-    inscopeonly: String,
-    scanpolicyname: String,
-    method: String,
-    postdata: String,
-    contextid: String,
-) -> Result<Value, ZapApiError> {
+pub async fn scan(service: &ZapService, url: &str, recurse: &str, inscopeonly: &str, scanpolicyname: &str, method: &str, postdata: &str, contextid: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("url".to_string(), url);
-    params.insert("recurse".to_string(), recurse);
-    params.insert("inScopeOnly".to_string(), inscopeonly);
-    params.insert("scanPolicyName".to_string(), scanpolicyname);
-    params.insert("method".to_string(), method);
-    params.insert("postData".to_string(), postdata);
-    params.insert("contextId".to_string(), contextid);
-    super::call(service, "ascan", "action", "scan", params)
+    params.insert("url".to_string(), url.to_string());
+    params.insert("recurse".to_string(), recurse.to_string());
+    params.insert("inScopeOnly".to_string(), inscopeonly.to_string());
+    params.insert("scanPolicyName".to_string(), scanpolicyname.to_string());
+    params.insert("method".to_string(), method.to_string());
+    params.insert("postData".to_string(), postdata.to_string());
+    params.insert("contextId".to_string(), contextid.to_string());
+    super::call(service, "ascan", "action", "scan", params).await
 }
 
 /**
  * Active Scans from the perspective of a User, obtained using the given Context ID and User ID. See 'scan' action for more details.
 */
 #[allow(clippy::too_many_arguments)]
-pub fn scan_as_user(
-    service: &ZapService,
-    url: String,
-    contextid: String,
-    userid: String,
-    recurse: String,
-    scanpolicyname: String,
-    method: String,
-    postdata: String,
-) -> Result<Value, ZapApiError> {
+pub async fn scan_as_user(service: &ZapService, url: &str, contextid: &str, userid: &str, recurse: &str, scanpolicyname: &str, method: &str, postdata: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("url".to_string(), url);
-    params.insert("contextId".to_string(), contextid);
-    params.insert("userId".to_string(), userid);
-    params.insert("recurse".to_string(), recurse);
-    params.insert("scanPolicyName".to_string(), scanpolicyname);
-    params.insert("method".to_string(), method);
-    params.insert("postData".to_string(), postdata);
-    super::call(service, "ascan", "action", "scanAsUser", params)
+    params.insert("url".to_string(), url.to_string());
+    params.insert("contextId".to_string(), contextid.to_string());
+    params.insert("userId".to_string(), userid.to_string());
+    params.insert("recurse".to_string(), recurse.to_string());
+    params.insert("scanPolicyName".to_string(), scanpolicyname.to_string());
+    params.insert("method".to_string(), method.to_string());
+    params.insert("postData".to_string(), postdata.to_string());
+    super::call(service, "ascan", "action", "scanAsUser", params).await
 }
 
-pub fn pause(service: &ZapService, scanid: String) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn pause(service: &ZapService, scanid: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("scanId".to_string(), scanid);
-    super::call(service, "ascan", "action", "pause", params)
+    params.insert("scanId".to_string(), scanid.to_string());
+    super::call(service, "ascan", "action", "pause", params).await
 }
 
-pub fn resume(service: &ZapService, scanid: String) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn resume(service: &ZapService, scanid: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("scanId".to_string(), scanid);
-    super::call(service, "ascan", "action", "resume", params)
+    params.insert("scanId".to_string(), scanid.to_string());
+    super::call(service, "ascan", "action", "resume", params).await
 }
 
-pub fn stop(service: &ZapService, scanid: String) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn stop(service: &ZapService, scanid: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("scanId".to_string(), scanid);
-    super::call(service, "ascan", "action", "stop", params)
+    params.insert("scanId".to_string(), scanid.to_string());
+    super::call(service, "ascan", "action", "stop", params).await
 }
 
-pub fn remove_scan(service: &ZapService, scanid: String) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn remove_scan(service: &ZapService, scanid: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("scanId".to_string(), scanid);
-    super::call(service, "ascan", "action", "removeScan", params)
+    params.insert("scanId".to_string(), scanid.to_string());
+    super::call(service, "ascan", "action", "removeScan", params).await
 }
 
-pub fn pause_all_scans(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn pause_all_scans(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ascan", "action", "pauseAllScans", params)
+    super::call(service, "ascan", "action", "pauseAllScans", params).await
 }
 
-pub fn resume_all_scans(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn resume_all_scans(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ascan", "action", "resumeAllScans", params)
+    super::call(service, "ascan", "action", "resumeAllScans", params).await
 }
 
-pub fn stop_all_scans(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn stop_all_scans(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ascan", "action", "stopAllScans", params)
+    super::call(service, "ascan", "action", "stopAllScans", params).await
 }
 
-pub fn remove_all_scans(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn remove_all_scans(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ascan", "action", "removeAllScans", params)
+    super::call(service, "ascan", "action", "removeAllScans", params).await
 }
 
 /**
  * Clears the regexes of URLs excluded from the active scans.
 */
-pub fn clear_excluded_from_scan(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn clear_excluded_from_scan(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ascan", "action", "clearExcludedFromScan", params)
+    super::call(service, "ascan", "action", "clearExcludedFromScan", params).await
 }
 
 /**
  * Adds a regex of URLs that should be excluded from the active scans.
 */
-pub fn exclude_from_scan(service: &ZapService, regex: String) -> Result<Value, ZapApiError> {
+pub async fn exclude_from_scan(service: &ZapService, regex: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("regex".to_string(), regex);
-    super::call(service, "ascan", "action", "excludeFromScan", params)
+    params.insert("regex".to_string(), regex.to_string());
+    super::call(service, "ascan", "action", "excludeFromScan", params).await
 }
 
 /**
  * Enables all scanners of the scan policy with the given name, or the default if none given.
 */
-pub fn enable_all_scanners(
-    service: &ZapService,
-    scanpolicyname: String,
-) -> Result<Value, ZapApiError> {
+pub async fn enable_all_scanners(service: &ZapService, scanpolicyname: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("scanPolicyName".to_string(), scanpolicyname);
-    super::call(service, "ascan", "action", "enableAllScanners", params)
+    params.insert("scanPolicyName".to_string(), scanpolicyname.to_string());
+    super::call(service, "ascan", "action", "enableAllScanners", params).await
 }
 
 /**
  * Disables all scanners of the scan policy with the given name, or the default if none given.
 */
-pub fn disable_all_scanners(
-    service: &ZapService,
-    scanpolicyname: String,
-) -> Result<Value, ZapApiError> {
+pub async fn disable_all_scanners(service: &ZapService, scanpolicyname: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("scanPolicyName".to_string(), scanpolicyname);
-    super::call(service, "ascan", "action", "disableAllScanners", params)
+    params.insert("scanPolicyName".to_string(), scanpolicyname.to_string());
+    super::call(service, "ascan", "action", "disableAllScanners", params).await
 }
 
 /**
  * Enables the scanners with the given IDs (comma separated list of IDs) of the scan policy with the given name, or the default if none given.
 */
-pub fn enable_scanners(
-    service: &ZapService,
-    ids: String,
-    scanpolicyname: String,
-) -> Result<Value, ZapApiError> {
+pub async fn enable_scanners(service: &ZapService, ids: &str, scanpolicyname: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("ids".to_string(), ids);
-    params.insert("scanPolicyName".to_string(), scanpolicyname);
-    super::call(service, "ascan", "action", "enableScanners", params)
+    params.insert("ids".to_string(), ids.to_string());
+    params.insert("scanPolicyName".to_string(), scanpolicyname.to_string());
+    super::call(service, "ascan", "action", "enableScanners", params).await
 }
 
 /**
  * Disables the scanners with the given IDs (comma separated list of IDs) of the scan policy with the given name, or the default if none given.
 */
-pub fn disable_scanners(
-    service: &ZapService,
-    ids: String,
-    scanpolicyname: String,
-) -> Result<Value, ZapApiError> {
+pub async fn disable_scanners(service: &ZapService, ids: &str, scanpolicyname: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("ids".to_string(), ids);
-    params.insert("scanPolicyName".to_string(), scanpolicyname);
-    super::call(service, "ascan", "action", "disableScanners", params)
+    params.insert("ids".to_string(), ids.to_string());
+    params.insert("scanPolicyName".to_string(), scanpolicyname.to_string());
+    super::call(service, "ascan", "action", "disableScanners", params).await
 }
 
-pub fn set_enabled_policies(
-    service: &ZapService,
-    ids: String,
-    scanpolicyname: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_enabled_policies(service: &ZapService, ids: &str, scanpolicyname: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("ids".to_string(), ids);
-    params.insert("scanPolicyName".to_string(), scanpolicyname);
-    super::call(service, "ascan", "action", "setEnabledPolicies", params)
+    params.insert("ids".to_string(), ids.to_string());
+    params.insert("scanPolicyName".to_string(), scanpolicyname.to_string());
+    super::call(service, "ascan", "action", "setEnabledPolicies", params).await
 }
 
-pub fn set_policy_attack_strength(
-    service: &ZapService,
-    id: String,
-    attackstrength: String,
-    scanpolicyname: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_policy_attack_strength(service: &ZapService, id: &str, attackstrength: &str, scanpolicyname: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("id".to_string(), id);
-    params.insert("attackStrength".to_string(), attackstrength);
-    params.insert("scanPolicyName".to_string(), scanpolicyname);
-    super::call(
-        service,
-        "ascan",
-        "action",
-        "setPolicyAttackStrength",
-        params,
-    )
+    params.insert("id".to_string(), id.to_string());
+    params.insert("attackStrength".to_string(), attackstrength.to_string());
+    params.insert("scanPolicyName".to_string(), scanpolicyname.to_string());
+    super::call(service, "ascan", "action", "setPolicyAttackStrength", params).await
 }
 
-pub fn set_policy_alert_threshold(
-    service: &ZapService,
-    id: String,
-    alertthreshold: String,
-    scanpolicyname: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_policy_alert_threshold(service: &ZapService, id: &str, alertthreshold: &str, scanpolicyname: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("id".to_string(), id);
-    params.insert("alertThreshold".to_string(), alertthreshold);
-    params.insert("scanPolicyName".to_string(), scanpolicyname);
-    super::call(
-        service,
-        "ascan",
-        "action",
-        "setPolicyAlertThreshold",
-        params,
-    )
+    params.insert("id".to_string(), id.to_string());
+    params.insert("alertThreshold".to_string(), alertthreshold.to_string());
+    params.insert("scanPolicyName".to_string(), scanpolicyname.to_string());
+    super::call(service, "ascan", "action", "setPolicyAlertThreshold", params).await
 }
 
-pub fn set_scanner_attack_strength(
-    service: &ZapService,
-    id: String,
-    attackstrength: String,
-    scanpolicyname: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_scanner_attack_strength(service: &ZapService, id: &str, attackstrength: &str, scanpolicyname: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("id".to_string(), id);
-    params.insert("attackStrength".to_string(), attackstrength);
-    params.insert("scanPolicyName".to_string(), scanpolicyname);
-    super::call(
-        service,
-        "ascan",
-        "action",
-        "setScannerAttackStrength",
-        params,
-    )
+    params.insert("id".to_string(), id.to_string());
+    params.insert("attackStrength".to_string(), attackstrength.to_string());
+    params.insert("scanPolicyName".to_string(), scanpolicyname.to_string());
+    super::call(service, "ascan", "action", "setScannerAttackStrength", params).await
 }
 
-pub fn set_scanner_alert_threshold(
-    service: &ZapService,
-    id: String,
-    alertthreshold: String,
-    scanpolicyname: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_scanner_alert_threshold(service: &ZapService, id: &str, alertthreshold: &str, scanpolicyname: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("id".to_string(), id);
-    params.insert("alertThreshold".to_string(), alertthreshold);
-    params.insert("scanPolicyName".to_string(), scanpolicyname);
-    super::call(
-        service,
-        "ascan",
-        "action",
-        "setScannerAlertThreshold",
-        params,
-    )
+    params.insert("id".to_string(), id.to_string());
+    params.insert("alertThreshold".to_string(), alertthreshold.to_string());
+    params.insert("scanPolicyName".to_string(), scanpolicyname.to_string());
+    super::call(service, "ascan", "action", "setScannerAlertThreshold", params).await
 }
 
-pub fn add_scan_policy(
-    service: &ZapService,
-    scanpolicyname: String,
-    alertthreshold: String,
-    attackstrength: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn add_scan_policy(service: &ZapService, scanpolicyname: &str, alertthreshold: &str, attackstrength: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("scanPolicyName".to_string(), scanpolicyname);
-    params.insert("alertThreshold".to_string(), alertthreshold);
-    params.insert("attackStrength".to_string(), attackstrength);
-    super::call(service, "ascan", "action", "addScanPolicy", params)
+    params.insert("scanPolicyName".to_string(), scanpolicyname.to_string());
+    params.insert("alertThreshold".to_string(), alertthreshold.to_string());
+    params.insert("attackStrength".to_string(), attackstrength.to_string());
+    super::call(service, "ascan", "action", "addScanPolicy", params).await
 }
 
-pub fn remove_scan_policy(
-    service: &ZapService,
-    scanpolicyname: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn remove_scan_policy(service: &ZapService, scanpolicyname: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("scanPolicyName".to_string(), scanpolicyname);
-    super::call(service, "ascan", "action", "removeScanPolicy", params)
+    params.insert("scanPolicyName".to_string(), scanpolicyname.to_string());
+    super::call(service, "ascan", "action", "removeScanPolicy", params).await
 }
 
-pub fn update_scan_policy(
-    service: &ZapService,
-    scanpolicyname: String,
-    alertthreshold: String,
-    attackstrength: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn update_scan_policy(service: &ZapService, scanpolicyname: &str, alertthreshold: &str, attackstrength: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("scanPolicyName".to_string(), scanpolicyname);
-    params.insert("alertThreshold".to_string(), alertthreshold);
-    params.insert("attackStrength".to_string(), attackstrength);
-    super::call(service, "ascan", "action", "updateScanPolicy", params)
+    params.insert("scanPolicyName".to_string(), scanpolicyname.to_string());
+    params.insert("alertThreshold".to_string(), alertthreshold.to_string());
+    params.insert("attackStrength".to_string(), attackstrength.to_string());
+    super::call(service, "ascan", "action", "updateScanPolicy", params).await
 }
 
 /**
  * Imports a Scan Policy using the given file system path.
 */
-pub fn import_scan_policy(service: &ZapService, path: String) -> Result<Value, ZapApiError> {
+pub async fn import_scan_policy(service: &ZapService, path: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("path".to_string(), path);
-    super::call(service, "ascan", "action", "importScanPolicy", params)
+    params.insert("path".to_string(), path.to_string());
+    super::call(service, "ascan", "action", "importScanPolicy", params).await
 }
 
 /**
- * Adds a new parameter excluded from the scan, using the specified name. Optionally sets if the new entry applies to a specific URL (default, all URLs) and sets the ID of the type of the parameter (default, ID of any type). The type IDs can be obtained with the view excludedParamTypes.
+ * Adds a new parameter excluded from the scan, using the specified name. Optionally sets if the new entry applies to a specific URL (default, all URLs) and sets the ID of the type of the parameter (default, ID of any type). The type IDs can be obtained with the view excludedParamTypes. 
 */
-pub fn add_excluded_param(
-    service: &ZapService,
-    name: String,
-    typ: String,
-    url: String,
-) -> Result<Value, ZapApiError> {
+pub async fn add_excluded_param(service: &ZapService, name: &str, typ: &str, url: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("name".to_string(), name);
-    params.insert("type".to_string(), typ);
-    params.insert("url".to_string(), url);
-    super::call(service, "ascan", "action", "addExcludedParam", params)
+    params.insert("name".to_string(), name.to_string());
+    params.insert("type".to_string(), typ.to_string());
+    params.insert("url".to_string(), url.to_string());
+    super::call(service, "ascan", "action", "addExcludedParam", params).await
 }
 
 /**
  * Modifies a parameter excluded from the scan. Allows to modify the name, the URL and the type of parameter. The parameter is selected with its index, which can be obtained with the view excludedParams.
 */
-pub fn modify_excluded_param(
-    service: &ZapService,
-    idx: String,
-    name: String,
-    typ: String,
-    url: String,
-) -> Result<Value, ZapApiError> {
+pub async fn modify_excluded_param(service: &ZapService, idx: &str, name: &str, typ: &str, url: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("idx".to_string(), idx);
-    params.insert("name".to_string(), name);
-    params.insert("type".to_string(), typ);
-    params.insert("url".to_string(), url);
-    super::call(service, "ascan", "action", "modifyExcludedParam", params)
+    params.insert("idx".to_string(), idx.to_string());
+    params.insert("name".to_string(), name.to_string());
+    params.insert("type".to_string(), typ.to_string());
+    params.insert("url".to_string(), url.to_string());
+    super::call(service, "ascan", "action", "modifyExcludedParam", params).await
 }
 
 /**
  * Removes a parameter excluded from the scan, with the given index. The index can be obtained with the view excludedParams.
 */
-pub fn remove_excluded_param(service: &ZapService, idx: String) -> Result<Value, ZapApiError> {
+pub async fn remove_excluded_param(service: &ZapService, idx: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("idx".to_string(), idx);
-    super::call(service, "ascan", "action", "removeExcludedParam", params)
+    params.insert("idx".to_string(), idx.to_string());
+    super::call(service, "ascan", "action", "removeExcludedParam", params).await
 }
 
 /**
  * Skips the scanner using the given IDs of the scan and the scanner.
 */
-pub fn skip_scanner(
-    service: &ZapService,
-    scanid: String,
-    scannerid: String,
-) -> Result<Value, ZapApiError> {
+pub async fn skip_scanner(service: &ZapService, scanid: &str, scannerid: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("scanId".to_string(), scanid);
-    params.insert("scannerId".to_string(), scannerid);
-    super::call(service, "ascan", "action", "skipScanner", params)
+    params.insert("scanId".to_string(), scanid.to_string());
+    params.insert("scannerId".to_string(), scannerid.to_string());
+    super::call(service, "ascan", "action", "skipScanner", params).await
 }
 
-pub fn set_option_attack_policy(
-    service: &ZapService,
-    string: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_attack_policy(service: &ZapService, string: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("String".to_string(), string);
-    super::call(service, "ascan", "action", "setOptionAttackPolicy", params)
+    params.insert("String".to_string(), string.to_string());
+    super::call(service, "ascan", "action", "setOptionAttackPolicy", params).await
 }
 
-pub fn set_option_default_policy(
-    service: &ZapService,
-    string: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_default_policy(service: &ZapService, string: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("String".to_string(), string);
-    super::call(service, "ascan", "action", "setOptionDefaultPolicy", params)
+    params.insert("String".to_string(), string.to_string());
+    super::call(service, "ascan", "action", "setOptionDefaultPolicy", params).await
 }
 
 /**
  * Sets whether or not the active scanner should add a query param to GET requests which do not have parameters to start with.
 */
-pub fn set_option_add_query_param(
-    service: &ZapService,
-    boolean: String,
-) -> Result<Value, ZapApiError> {
+pub async fn set_option_add_query_param(service: &ZapService, boolean: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Boolean".to_string(), boolean);
-    super::call(service, "ascan", "action", "setOptionAddQueryParam", params)
+    params.insert("Boolean".to_string(), boolean.to_string());
+    super::call(service, "ascan", "action", "setOptionAddQueryParam", params).await
 }
 
-pub fn set_option_allow_attack_on_start(
-    service: &ZapService,
-    boolean: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_allow_attack_on_start(service: &ZapService, boolean: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Boolean".to_string(), boolean);
-    super::call(
-        service,
-        "ascan",
-        "action",
-        "setOptionAllowAttackOnStart",
-        params,
-    )
+    params.insert("Boolean".to_string(), boolean.to_string());
+    super::call(service, "ascan", "action", "setOptionAllowAttackOnStart", params).await
 }
 
-pub fn set_option_delay_in_ms(service: &ZapService, integer: String) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_delay_in_ms(service: &ZapService, integer: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Integer".to_string(), integer);
-    super::call(service, "ascan", "action", "setOptionDelayInMs", params)
+    params.insert("Integer".to_string(), integer.to_string());
+    super::call(service, "ascan", "action", "setOptionDelayInMs", params).await
 }
 
-pub fn set_option_handle_anti_csrf_tokens(
-    service: &ZapService,
-    boolean: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_handle_anti_csrf_tokens(service: &ZapService, boolean: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Boolean".to_string(), boolean);
-    super::call(
-        service,
-        "ascan",
-        "action",
-        "setOptionHandleAntiCSRFTokens",
-        params,
-    )
+    params.insert("Boolean".to_string(), boolean.to_string());
+    super::call(service, "ascan", "action", "setOptionHandleAntiCSRFTokens", params).await
 }
 
-pub fn set_option_host_per_scan(
-    service: &ZapService,
-    integer: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_host_per_scan(service: &ZapService, integer: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Integer".to_string(), integer);
-    super::call(service, "ascan", "action", "setOptionHostPerScan", params)
+    params.insert("Integer".to_string(), integer.to_string());
+    super::call(service, "ascan", "action", "setOptionHostPerScan", params).await
 }
 
 /**
  * Sets whether or not the active scanner should inject the HTTP request header X-ZAP-Scan-ID, with the ID of the scanner that's sending the requests.
 */
-pub fn set_option_inject_plugin_id_in_header(
-    service: &ZapService,
-    boolean: String,
-) -> Result<Value, ZapApiError> {
+pub async fn set_option_inject_plugin_id_in_header(service: &ZapService, boolean: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Boolean".to_string(), boolean);
-    super::call(
-        service,
-        "ascan",
-        "action",
-        "setOptionInjectPluginIdInHeader",
-        params,
-    )
+    params.insert("Boolean".to_string(), boolean.to_string());
+    super::call(service, "ascan", "action", "setOptionInjectPluginIdInHeader", params).await
 }
 
-pub fn set_option_max_chart_time_in_mins(
-    service: &ZapService,
-    integer: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_max_chart_time_in_mins(service: &ZapService, integer: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Integer".to_string(), integer);
-    super::call(
-        service,
-        "ascan",
-        "action",
-        "setOptionMaxChartTimeInMins",
-        params,
-    )
+    params.insert("Integer".to_string(), integer.to_string());
+    super::call(service, "ascan", "action", "setOptionMaxChartTimeInMins", params).await
 }
 
-pub fn set_option_max_results_to_list(
-    service: &ZapService,
-    integer: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_max_results_to_list(service: &ZapService, integer: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Integer".to_string(), integer);
-    super::call(
-        service,
-        "ascan",
-        "action",
-        "setOptionMaxResultsToList",
-        params,
-    )
+    params.insert("Integer".to_string(), integer.to_string());
+    super::call(service, "ascan", "action", "setOptionMaxResultsToList", params).await
 }
 
-pub fn set_option_max_rule_duration_in_mins(
-    service: &ZapService,
-    integer: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_max_rule_duration_in_mins(service: &ZapService, integer: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Integer".to_string(), integer);
-    super::call(
-        service,
-        "ascan",
-        "action",
-        "setOptionMaxRuleDurationInMins",
-        params,
-    )
+    params.insert("Integer".to_string(), integer.to_string());
+    super::call(service, "ascan", "action", "setOptionMaxRuleDurationInMins", params).await
 }
 
-pub fn set_option_max_scan_duration_in_mins(
-    service: &ZapService,
-    integer: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_max_scan_duration_in_mins(service: &ZapService, integer: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Integer".to_string(), integer);
-    super::call(
-        service,
-        "ascan",
-        "action",
-        "setOptionMaxScanDurationInMins",
-        params,
-    )
+    params.insert("Integer".to_string(), integer.to_string());
+    super::call(service, "ascan", "action", "setOptionMaxScanDurationInMins", params).await
 }
 
-pub fn set_option_max_scans_in_ui(
-    service: &ZapService,
-    integer: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_max_scans_in_ui(service: &ZapService, integer: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Integer".to_string(), integer);
-    super::call(service, "ascan", "action", "setOptionMaxScansInUI", params)
+    params.insert("Integer".to_string(), integer.to_string());
+    super::call(service, "ascan", "action", "setOptionMaxScansInUI", params).await
 }
 
-pub fn set_option_prompt_in_attack_mode(
-    service: &ZapService,
-    boolean: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_prompt_in_attack_mode(service: &ZapService, boolean: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Boolean".to_string(), boolean);
-    super::call(
-        service,
-        "ascan",
-        "action",
-        "setOptionPromptInAttackMode",
-        params,
-    )
+    params.insert("Boolean".to_string(), boolean.to_string());
+    super::call(service, "ascan", "action", "setOptionPromptInAttackMode", params).await
 }
 
-pub fn set_option_prompt_to_clear_finished_scans(
-    service: &ZapService,
-    boolean: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_prompt_to_clear_finished_scans(service: &ZapService, boolean: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Boolean".to_string(), boolean);
-    super::call(
-        service,
-        "ascan",
-        "action",
-        "setOptionPromptToClearFinishedScans",
-        params,
-    )
+    params.insert("Boolean".to_string(), boolean.to_string());
+    super::call(service, "ascan", "action", "setOptionPromptToClearFinishedScans", params).await
 }
 
-pub fn set_option_rescan_in_attack_mode(
-    service: &ZapService,
-    boolean: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_rescan_in_attack_mode(service: &ZapService, boolean: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Boolean".to_string(), boolean);
-    super::call(
-        service,
-        "ascan",
-        "action",
-        "setOptionRescanInAttackMode",
-        params,
-    )
+    params.insert("Boolean".to_string(), boolean.to_string());
+    super::call(service, "ascan", "action", "setOptionRescanInAttackMode", params).await
 }
 
 /**
  * Sets whether or not the HTTP Headers of all requests should be scanned. Not just requests that send parameters, through the query or request body.
 */
-pub fn set_option_scan_headers_all_requests(
-    service: &ZapService,
-    boolean: String,
-) -> Result<Value, ZapApiError> {
+pub async fn set_option_scan_headers_all_requests(service: &ZapService, boolean: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Boolean".to_string(), boolean);
-    super::call(
-        service,
-        "ascan",
-        "action",
-        "setOptionScanHeadersAllRequests",
-        params,
-    )
+    params.insert("Boolean".to_string(), boolean.to_string());
+    super::call(service, "ascan", "action", "setOptionScanHeadersAllRequests", params).await
 }
 
-pub fn set_option_show_advanced_dialog(
-    service: &ZapService,
-    boolean: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_show_advanced_dialog(service: &ZapService, boolean: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Boolean".to_string(), boolean);
-    super::call(
-        service,
-        "ascan",
-        "action",
-        "setOptionShowAdvancedDialog",
-        params,
-    )
+    params.insert("Boolean".to_string(), boolean.to_string());
+    super::call(service, "ascan", "action", "setOptionShowAdvancedDialog", params).await
 }
 
-pub fn set_option_target_params_enabled_rpc(
-    service: &ZapService,
-    integer: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_target_params_enabled_rpc(service: &ZapService, integer: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Integer".to_string(), integer);
-    super::call(
-        service,
-        "ascan",
-        "action",
-        "setOptionTargetParamsEnabledRPC",
-        params,
-    )
+    params.insert("Integer".to_string(), integer.to_string());
+    super::call(service, "ascan", "action", "setOptionTargetParamsEnabledRPC", params).await
 }
 
-pub fn set_option_target_params_injectable(
-    service: &ZapService,
-    integer: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_target_params_injectable(service: &ZapService, integer: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Integer".to_string(), integer);
-    super::call(
-        service,
-        "ascan",
-        "action",
-        "setOptionTargetParamsInjectable",
-        params,
-    )
+    params.insert("Integer".to_string(), integer.to_string());
+    super::call(service, "ascan", "action", "setOptionTargetParamsInjectable", params).await
 }
 
-pub fn set_option_thread_per_host(
-    service: &ZapService,
-    integer: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_thread_per_host(service: &ZapService, integer: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Integer".to_string(), integer);
-    super::call(service, "ascan", "action", "setOptionThreadPerHost", params)
+    params.insert("Integer".to_string(), integer.to_string());
+    super::call(service, "ascan", "action", "setOptionThreadPerHost", params).await
 }
+

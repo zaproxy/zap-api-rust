@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2019 the ZAP development team
+ * Copyright 2020 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,10 +17,12 @@
  * limitations under the License.
  */
 
+
 use super::ZapApiError;
 use super::ZapService;
 use serde_json::Value;
 use std::collections::HashMap;
+
 
 /**
  * This file was automatically generated.
@@ -28,34 +30,35 @@ use std::collections::HashMap;
 /**
  * Lists the names of all anti-CSRF tokens
 */
-pub fn option_tokens_names(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn option_tokens_names(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "acsrf", "view", "optionTokensNames", params)
+    super::call(service, "acsrf", "view", "optionTokensNames", params).await
 }
 
 /**
  * Adds an anti-CSRF token with the given name, enabled by default
 */
-pub fn add_option_token(service: &ZapService, string: String) -> Result<Value, ZapApiError> {
+pub async fn add_option_token(service: &ZapService, string: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("String".to_string(), string);
-    super::call(service, "acsrf", "action", "addOptionToken", params)
+    params.insert("String".to_string(), string.to_string());
+    super::call(service, "acsrf", "action", "addOptionToken", params).await
 }
 
 /**
  * Removes the anti-CSRF token with the given name
 */
-pub fn remove_option_token(service: &ZapService, string: String) -> Result<Value, ZapApiError> {
+pub async fn remove_option_token(service: &ZapService, string: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("String".to_string(), string);
-    super::call(service, "acsrf", "action", "removeOptionToken", params)
+    params.insert("String".to_string(), string.to_string());
+    super::call(service, "acsrf", "action", "removeOptionToken", params).await
 }
 
 /**
  * Generate a form for testing lack of anti-CSRF tokens - typically invoked via ZAP
 */
-pub fn gen_form(service: &ZapService, hrefid: String) -> Result<Value, ZapApiError> {
+pub async fn gen_form(service: &ZapService, hrefid: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("hrefId".to_string(), hrefid);
-    super::call(service, "acsrf", "other", "genForm", params)
+    params.insert("hrefId".to_string(), hrefid.to_string());
+    super::call(service, "acsrf", "other", "genForm", params).await
 }
+

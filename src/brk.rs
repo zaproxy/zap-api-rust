@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2019 the ZAP development team
+ * Copyright 2020 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,10 +17,12 @@
  * limitations under the License.
  */
 
+
 use super::ZapApiError;
 use super::ZapService;
 use serde_json::Value;
 use std::collections::HashMap;
+
 
 /**
  * This file was automatically generated.
@@ -28,125 +30,103 @@ use std::collections::HashMap;
 /**
  * Returns True if ZAP will break on both requests and responses
 */
-pub fn is_break_all(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn is_break_all(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "break", "view", "isBreakAll", params)
+    super::call(service, "break", "view", "isBreakAll", params).await
 }
 
 /**
  * Returns True if ZAP will break on requests
 */
-pub fn is_break_request(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn is_break_request(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "break", "view", "isBreakRequest", params)
+    super::call(service, "break", "view", "isBreakRequest", params).await
 }
 
 /**
  * Returns True if ZAP will break on responses
 */
-pub fn is_break_response(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn is_break_response(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "break", "view", "isBreakResponse", params)
+    super::call(service, "break", "view", "isBreakResponse", params).await
 }
 
 /**
  * Returns the HTTP message currently intercepted (if any)
 */
-pub fn http_message(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn http_message(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "break", "view", "httpMessage", params)
+    super::call(service, "break", "view", "httpMessage", params).await
 }
 
 /**
  * Controls the global break functionality. The type may be one of: http-all, http-request or http-response. The state may be true (for turning break on for the specified type) or false (for turning break off). Scope is not currently used.
 */
-pub fn brk(
-    service: &ZapService,
-    typ: String,
-    state: String,
-    scope: String,
-) -> Result<Value, ZapApiError> {
+pub async fn brk(service: &ZapService, typ: &str, state: &str, scope: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("type".to_string(), typ);
-    params.insert("state".to_string(), state);
-    params.insert("scope".to_string(), scope);
-    super::call(service, "break", "action", "break", params)
+    params.insert("type".to_string(), typ.to_string());
+    params.insert("state".to_string(), state.to_string());
+    params.insert("scope".to_string(), scope.to_string());
+    super::call(service, "break", "action", "break", params).await
 }
 
 /**
  * Overwrites the currently intercepted message with the data provided
 */
-pub fn set_http_message(
-    service: &ZapService,
-    httpheader: String,
-    httpbody: String,
-) -> Result<Value, ZapApiError> {
+pub async fn set_http_message(service: &ZapService, httpheader: &str, httpbody: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("httpHeader".to_string(), httpheader);
-    params.insert("httpBody".to_string(), httpbody);
-    super::call(service, "break", "action", "setHttpMessage", params)
+    params.insert("httpHeader".to_string(), httpheader.to_string());
+    params.insert("httpBody".to_string(), httpbody.to_string());
+    super::call(service, "break", "action", "setHttpMessage", params).await
 }
 
 /**
- * Submits the currently intercepted message and unsets the global request/response break points
+ * Submits the currently intercepted message and unsets the global request/response breakpoints
 */
-pub fn cont(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn cont(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "break", "action", "continue", params)
+    super::call(service, "break", "action", "continue", params).await
 }
 
 /**
  * Submits the currently intercepted message, the next request or response will automatically be intercepted
 */
-pub fn step(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn step(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "break", "action", "step", params)
+    super::call(service, "break", "action", "step", params).await
 }
 
 /**
  * Drops the currently intercepted message
 */
-pub fn drop(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn drop(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "break", "action", "drop", params)
+    super::call(service, "break", "action", "drop", params).await
 }
 
 /**
- * Adds a custom HTTP breakpont. The string is the string to match. Location may be one of: url, request_header, request_body, response_header or response_body. Match may be: contains or regex. Inverse (match) may be true or false. Lastly, ignorecase (when matching the string) may be true or false.  
+ * Adds a custom HTTP breakpoint. The string is the string to match. Location may be one of: url, request_header, request_body, response_header or response_body. Match may be: contains or regex. Inverse (match) may be true or false. Lastly, ignorecase (when matching the string) may be true or false.  
 */
-pub fn add_http_breakpoint(
-    service: &ZapService,
-    string: String,
-    location: String,
-    mtch: String,
-    inverse: String,
-    ignorecase: String,
-) -> Result<Value, ZapApiError> {
+pub async fn add_http_breakpoint(service: &ZapService, string: &str, location: &str, mtch: &str, inverse: &str, ignorecase: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("string".to_string(), string);
-    params.insert("location".to_string(), location);
-    params.insert("match".to_string(), mtch);
-    params.insert("inverse".to_string(), inverse);
-    params.insert("ignorecase".to_string(), ignorecase);
-    super::call(service, "break", "action", "addHttpBreakpoint", params)
+    params.insert("string".to_string(), string.to_string());
+    params.insert("location".to_string(), location.to_string());
+    params.insert("match".to_string(), mtch.to_string());
+    params.insert("inverse".to_string(), inverse.to_string());
+    params.insert("ignorecase".to_string(), ignorecase.to_string());
+    super::call(service, "break", "action", "addHttpBreakpoint", params).await
 }
 
 /**
- * Removes the specified break point
+ * Removes the specified breakpoint
 */
-pub fn remove_http_breakpoint(
-    service: &ZapService,
-    string: String,
-    location: String,
-    mtch: String,
-    inverse: String,
-    ignorecase: String,
-) -> Result<Value, ZapApiError> {
+pub async fn remove_http_breakpoint(service: &ZapService, string: &str, location: &str, mtch: &str, inverse: &str, ignorecase: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("string".to_string(), string);
-    params.insert("location".to_string(), location);
-    params.insert("match".to_string(), mtch);
-    params.insert("inverse".to_string(), inverse);
-    params.insert("ignorecase".to_string(), ignorecase);
-    super::call(service, "break", "action", "removeHttpBreakpoint", params)
+    params.insert("string".to_string(), string.to_string());
+    params.insert("location".to_string(), location.to_string());
+    params.insert("match".to_string(), mtch.to_string());
+    params.insert("inverse".to_string(), inverse.to_string());
+    params.insert("ignorecase".to_string(), ignorecase.to_string());
+    super::call(service, "break", "action", "removeHttpBreakpoint", params).await
 }
+

@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2019 the ZAP development team
+ * Copyright 2020 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,707 +17,644 @@
  * limitations under the License.
  */
 
+
 use super::ZapApiError;
 use super::ZapService;
 use serde_json::Value;
 use std::collections::HashMap;
 
+
 /**
  * This file was automatically generated.
  */
-pub fn status(service: &ZapService, scanid: String) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn status(service: &ZapService, scanid: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("scanId".to_string(), scanid);
-    super::call(service, "spider", "view", "status", params)
+    params.insert("scanId".to_string(), scanid.to_string());
+    super::call(service, "spider", "view", "status", params).await
 }
 
-pub fn results(service: &ZapService, scanid: String) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn results(service: &ZapService, scanid: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("scanId".to_string(), scanid);
-    super::call(service, "spider", "view", "results", params)
+    params.insert("scanId".to_string(), scanid.to_string());
+    super::call(service, "spider", "view", "results", params).await
 }
 
-pub fn full_results(service: &ZapService, scanid: String) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn full_results(service: &ZapService, scanid: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("scanId".to_string(), scanid);
-    super::call(service, "spider", "view", "fullResults", params)
+    params.insert("scanId".to_string(), scanid.to_string());
+    super::call(service, "spider", "view", "fullResults", params).await
 }
 
-pub fn scans(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn scans(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "view", "scans", params)
+    super::call(service, "spider", "view", "scans", params).await
 }
 
 /**
  * Gets the regexes of URLs excluded from the spider scans.
 */
-pub fn excluded_from_scan(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn excluded_from_scan(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "view", "excludedFromScan", params)
+    super::call(service, "spider", "view", "excludedFromScan", params).await
 }
 
 /**
  * Returns a list of unique URLs from the history table based on HTTP messages added by the Spider.
 */
-pub fn all_urls(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn all_urls(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "view", "allUrls", params)
+    super::call(service, "spider", "view", "allUrls", params).await
 }
 
 /**
  * Returns a list of the names of the nodes added to the Sites tree by the specified scan.
 */
-pub fn added_nodes(service: &ZapService, scanid: String) -> Result<Value, ZapApiError> {
+pub async fn added_nodes(service: &ZapService, scanid: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("scanId".to_string(), scanid);
-    super::call(service, "spider", "view", "addedNodes", params)
+    params.insert("scanId".to_string(), scanid.to_string());
+    super::call(service, "spider", "view", "addedNodes", params).await
 }
 
 /**
  * Gets all the domains that are always in scope. For each domain the following are shown: the index, the value (domain), if enabled, and if specified as a regex.
 */
-pub fn domains_always_in_scope(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn domains_always_in_scope(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "view", "domainsAlwaysInScope", params)
+    super::call(service, "spider", "view", "domainsAlwaysInScope", params).await
 }
 
 /**
  * Use view domainsAlwaysInScope instead.
- * Deprecated
 */
-pub fn option_domains_always_in_scope(service: &ZapService) -> Result<Value, ZapApiError> {
+#[deprecated]
+pub async fn option_domains_always_in_scope(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(
-        service,
-        "spider",
-        "view",
-        "optionDomainsAlwaysInScope",
-        params,
-    )
+    super::call(service, "spider", "view", "optionDomainsAlwaysInScope", params).await
 }
 
 /**
  * Use view domainsAlwaysInScope instead.
- * Deprecated
 */
-pub fn option_domains_always_in_scope_enabled(service: &ZapService) -> Result<Value, ZapApiError> {
+#[deprecated]
+pub async fn option_domains_always_in_scope_enabled(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(
-        service,
-        "spider",
-        "view",
-        "optionDomainsAlwaysInScopeEnabled",
-        params,
-    )
+    super::call(service, "spider", "view", "optionDomainsAlwaysInScopeEnabled", params).await
 }
 
-pub fn option_handle_parameters(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_handle_parameters(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "view", "optionHandleParameters", params)
+    super::call(service, "spider", "view", "optionHandleParameters", params).await
 }
 
 /**
  * Gets the maximum number of child nodes (per node) that can be crawled, 0 means no limit.
 */
-pub fn option_max_children(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn option_max_children(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "view", "optionMaxChildren", params)
+    super::call(service, "spider", "view", "optionMaxChildren", params).await
 }
 
 /**
  * Gets the maximum depth the spider can crawl, 0 if unlimited.
 */
-pub fn option_max_depth(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn option_max_depth(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "view", "optionMaxDepth", params)
+    super::call(service, "spider", "view", "optionMaxDepth", params).await
 }
 
-pub fn option_max_duration(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_max_duration(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "view", "optionMaxDuration", params)
+    super::call(service, "spider", "view", "optionMaxDuration", params).await
 }
 
 /**
  * Gets the maximum size, in bytes, that a response might have to be parsed.
 */
-pub fn option_max_parse_size_bytes(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn option_max_parse_size_bytes(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "view", "optionMaxParseSizeBytes", params)
+    super::call(service, "spider", "view", "optionMaxParseSizeBytes", params).await
 }
 
-pub fn option_max_scans_in_ui(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_max_scans_in_ui(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "view", "optionMaxScansInUI", params)
+    super::call(service, "spider", "view", "optionMaxScansInUI", params).await
 }
 
-pub fn option_request_wait_time(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_request_wait_time(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "view", "optionRequestWaitTime", params)
+    super::call(service, "spider", "view", "optionRequestWaitTime", params).await
 }
 
-pub fn option_scope(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+#[deprecated(note="Option no longer in effective use.")]
+pub async fn option_scope(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "view", "optionScope", params)
+    super::call(service, "spider", "view", "optionScope", params).await
 }
 
-pub fn option_scope_text(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+#[deprecated(note="Option no longer in effective use.")]
+pub async fn option_scope_text(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "view", "optionScopeText", params)
+    super::call(service, "spider", "view", "optionScopeText", params).await
 }
 
-pub fn option_skip_url_string(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_skip_url_string(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "view", "optionSkipURLString", params)
+    super::call(service, "spider", "view", "optionSkipURLString", params).await
 }
 
-pub fn option_thread_count(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_thread_count(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "view", "optionThreadCount", params)
+    super::call(service, "spider", "view", "optionThreadCount", params).await
 }
 
-pub fn option_user_agent(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_user_agent(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "view", "optionUserAgent", params)
+    super::call(service, "spider", "view", "optionUserAgent", params).await
 }
 
 /**
  * Gets whether or not a spider process should accept cookies while spidering.
 */
-pub fn option_accept_cookies(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn option_accept_cookies(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "view", "optionAcceptCookies", params)
+    super::call(service, "spider", "view", "optionAcceptCookies", params).await
 }
 
-pub fn option_handle_o_data_parameters_visited(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_handle_o_data_parameters_visited(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(
-        service,
-        "spider",
-        "view",
-        "optionHandleODataParametersVisited",
-        params,
-    )
+    super::call(service, "spider", "view", "optionHandleODataParametersVisited", params).await
 }
 
-pub fn option_parse_comments(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_parse_comments(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "view", "optionParseComments", params)
+    super::call(service, "spider", "view", "optionParseComments", params).await
 }
 
-pub fn option_parse_git(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_parse_git(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "view", "optionParseGit", params)
+    super::call(service, "spider", "view", "optionParseGit", params).await
 }
 
-pub fn option_parse_robots_txt(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_parse_robots_txt(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "view", "optionParseRobotsTxt", params)
+    super::call(service, "spider", "view", "optionParseRobotsTxt", params).await
 }
 
-pub fn option_parse_svn_entries(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_parse_svn_entries(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "view", "optionParseSVNEntries", params)
+    super::call(service, "spider", "view", "optionParseSVNEntries", params).await
 }
 
-pub fn option_parse_sitemap_xml(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_parse_sitemap_xml(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "view", "optionParseSitemapXml", params)
+    super::call(service, "spider", "view", "optionParseSitemapXml", params).await
 }
 
-pub fn option_post_form(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_post_form(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "view", "optionPostForm", params)
+    super::call(service, "spider", "view", "optionPostForm", params).await
 }
 
-pub fn option_process_form(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_process_form(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "view", "optionProcessForm", params)
+    super::call(service, "spider", "view", "optionProcessForm", params).await
 }
 
 /**
  * Gets whether or not the 'Referer' header should be sent while spidering.
 */
-pub fn option_send_referer_header(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn option_send_referer_header(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "view", "optionSendRefererHeader", params)
+    super::call(service, "spider", "view", "optionSendRefererHeader", params).await
 }
 
-pub fn option_show_advanced_dialog(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn option_show_advanced_dialog(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(
-        service,
-        "spider",
-        "view",
-        "optionShowAdvancedDialog",
-        params,
-    )
+    super::call(service, "spider", "view", "optionShowAdvancedDialog", params).await
 }
 
 /**
  * Runs the spider against the given URL (or context). Optionally, the 'maxChildren' parameter can be set to limit the number of children scanned, the 'recurse' parameter can be used to prevent the spider from seeding recursively, the parameter 'contextName' can be used to constrain the scan to a Context and the parameter 'subtreeOnly' allows to restrict the spider under a site's subtree (using the specified 'url').
 */
-pub fn scan(
-    service: &ZapService,
-    url: String,
-    maxchildren: String,
-    recurse: String,
-    contextname: String,
-    subtreeonly: String,
-) -> Result<Value, ZapApiError> {
+pub async fn scan(service: &ZapService, url: &str, maxchildren: &str, recurse: &str, contextname: &str, subtreeonly: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("url".to_string(), url);
-    params.insert("maxChildren".to_string(), maxchildren);
-    params.insert("recurse".to_string(), recurse);
-    params.insert("contextName".to_string(), contextname);
-    params.insert("subtreeOnly".to_string(), subtreeonly);
-    super::call(service, "spider", "action", "scan", params)
+    params.insert("url".to_string(), url.to_string());
+    params.insert("maxChildren".to_string(), maxchildren.to_string());
+    params.insert("recurse".to_string(), recurse.to_string());
+    params.insert("contextName".to_string(), contextname.to_string());
+    params.insert("subtreeOnly".to_string(), subtreeonly.to_string());
+    super::call(service, "spider", "action", "scan", params).await
 }
 
 /**
  * Runs the spider from the perspective of a User, obtained using the given Context ID and User ID. See 'scan' action for more details.
 */
-pub fn scan_as_user(
-    service: &ZapService,
-    contextid: String,
-    userid: String,
-    url: String,
-    maxchildren: String,
-    recurse: String,
-    subtreeonly: String,
-) -> Result<Value, ZapApiError> {
+pub async fn scan_as_user(service: &ZapService, contextid: &str, userid: &str, url: &str, maxchildren: &str, recurse: &str, subtreeonly: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("contextId".to_string(), contextid);
-    params.insert("userId".to_string(), userid);
-    params.insert("url".to_string(), url);
-    params.insert("maxChildren".to_string(), maxchildren);
-    params.insert("recurse".to_string(), recurse);
-    params.insert("subtreeOnly".to_string(), subtreeonly);
-    super::call(service, "spider", "action", "scanAsUser", params)
+    params.insert("contextId".to_string(), contextid.to_string());
+    params.insert("userId".to_string(), userid.to_string());
+    params.insert("url".to_string(), url.to_string());
+    params.insert("maxChildren".to_string(), maxchildren.to_string());
+    params.insert("recurse".to_string(), recurse.to_string());
+    params.insert("subtreeOnly".to_string(), subtreeonly.to_string());
+    super::call(service, "spider", "action", "scanAsUser", params).await
 }
 
-pub fn pause(service: &ZapService, scanid: String) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn pause(service: &ZapService, scanid: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("scanId".to_string(), scanid);
-    super::call(service, "spider", "action", "pause", params)
+    params.insert("scanId".to_string(), scanid.to_string());
+    super::call(service, "spider", "action", "pause", params).await
 }
 
-pub fn resume(service: &ZapService, scanid: String) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn resume(service: &ZapService, scanid: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("scanId".to_string(), scanid);
-    super::call(service, "spider", "action", "resume", params)
+    params.insert("scanId".to_string(), scanid.to_string());
+    super::call(service, "spider", "action", "resume", params).await
 }
 
-pub fn stop(service: &ZapService, scanid: String) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn stop(service: &ZapService, scanid: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("scanId".to_string(), scanid);
-    super::call(service, "spider", "action", "stop", params)
+    params.insert("scanId".to_string(), scanid.to_string());
+    super::call(service, "spider", "action", "stop", params).await
 }
 
-pub fn remove_scan(service: &ZapService, scanid: String) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn remove_scan(service: &ZapService, scanid: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("scanId".to_string(), scanid);
-    super::call(service, "spider", "action", "removeScan", params)
+    params.insert("scanId".to_string(), scanid.to_string());
+    super::call(service, "spider", "action", "removeScan", params).await
 }
 
-pub fn pause_all_scans(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn pause_all_scans(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "action", "pauseAllScans", params)
+    super::call(service, "spider", "action", "pauseAllScans", params).await
 }
 
-pub fn resume_all_scans(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn resume_all_scans(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "action", "resumeAllScans", params)
+    super::call(service, "spider", "action", "resumeAllScans", params).await
 }
 
-pub fn stop_all_scans(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn stop_all_scans(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "action", "stopAllScans", params)
+    super::call(service, "spider", "action", "stopAllScans", params).await
 }
 
-pub fn remove_all_scans(service: &ZapService) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn remove_all_scans(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "action", "removeAllScans", params)
+    super::call(service, "spider", "action", "removeAllScans", params).await
 }
 
 /**
  * Clears the regexes of URLs excluded from the spider scans.
 */
-pub fn clear_excluded_from_scan(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn clear_excluded_from_scan(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "spider", "action", "clearExcludedFromScan", params)
+    super::call(service, "spider", "action", "clearExcludedFromScan", params).await
 }
 
 /**
  * Adds a regex of URLs that should be excluded from the spider scans.
 */
-pub fn exclude_from_scan(service: &ZapService, regex: String) -> Result<Value, ZapApiError> {
+pub async fn exclude_from_scan(service: &ZapService, regex: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("regex".to_string(), regex);
-    super::call(service, "spider", "action", "excludeFromScan", params)
+    params.insert("regex".to_string(), regex.to_string());
+    super::call(service, "spider", "action", "excludeFromScan", params).await
 }
 
 /**
  * Adds a new domain that's always in scope, using the specified value. Optionally sets if the new entry is enabled (default, true) and whether or not the new value is specified as a regex (default, false).
 */
-pub fn add_domain_always_in_scope(
-    service: &ZapService,
-    value: String,
-    isregex: String,
-    isenabled: String,
-) -> Result<Value, ZapApiError> {
+pub async fn add_domain_always_in_scope(service: &ZapService, value: &str, isregex: &str, isenabled: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("value".to_string(), value);
-    params.insert("isRegex".to_string(), isregex);
-    params.insert("isEnabled".to_string(), isenabled);
-    super::call(
-        service,
-        "spider",
-        "action",
-        "addDomainAlwaysInScope",
-        params,
-    )
+    params.insert("value".to_string(), value.to_string());
+    params.insert("isRegex".to_string(), isregex.to_string());
+    params.insert("isEnabled".to_string(), isenabled.to_string());
+    super::call(service, "spider", "action", "addDomainAlwaysInScope", params).await
 }
 
 /**
  * Modifies a domain that's always in scope. Allows to modify the value, if enabled or if a regex. The domain is selected with its index, which can be obtained with the view domainsAlwaysInScope.
 */
-pub fn modify_domain_always_in_scope(
-    service: &ZapService,
-    idx: String,
-    value: String,
-    isregex: String,
-    isenabled: String,
-) -> Result<Value, ZapApiError> {
+pub async fn modify_domain_always_in_scope(service: &ZapService, idx: &str, value: &str, isregex: &str, isenabled: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("idx".to_string(), idx);
-    params.insert("value".to_string(), value);
-    params.insert("isRegex".to_string(), isregex);
-    params.insert("isEnabled".to_string(), isenabled);
-    super::call(
-        service,
-        "spider",
-        "action",
-        "modifyDomainAlwaysInScope",
-        params,
-    )
+    params.insert("idx".to_string(), idx.to_string());
+    params.insert("value".to_string(), value.to_string());
+    params.insert("isRegex".to_string(), isregex.to_string());
+    params.insert("isEnabled".to_string(), isenabled.to_string());
+    super::call(service, "spider", "action", "modifyDomainAlwaysInScope", params).await
 }
 
 /**
  * Removes a domain that's always in scope, with the given index. The index can be obtained with the view domainsAlwaysInScope.
 */
-pub fn remove_domain_always_in_scope(
-    service: &ZapService,
-    idx: String,
-) -> Result<Value, ZapApiError> {
+pub async fn remove_domain_always_in_scope(service: &ZapService, idx: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("idx".to_string(), idx);
-    super::call(
-        service,
-        "spider",
-        "action",
-        "removeDomainAlwaysInScope",
-        params,
-    )
+    params.insert("idx".to_string(), idx.to_string());
+    super::call(service, "spider", "action", "removeDomainAlwaysInScope", params).await
 }
 
 /**
  * Enables all domains that are always in scope.
 */
-pub fn enable_all_domains_always_in_scope(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn enable_all_domains_always_in_scope(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(
-        service,
-        "spider",
-        "action",
-        "enableAllDomainsAlwaysInScope",
-        params,
-    )
+    super::call(service, "spider", "action", "enableAllDomainsAlwaysInScope", params).await
 }
 
 /**
  * Disables all domains that are always in scope.
 */
-pub fn disable_all_domains_always_in_scope(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn disable_all_domains_always_in_scope(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(
-        service,
-        "spider",
-        "action",
-        "disableAllDomainsAlwaysInScope",
-        params,
-    )
+    super::call(service, "spider", "action", "disableAllDomainsAlwaysInScope", params).await
 }
 
-pub fn set_option_handle_parameters(
-    service: &ZapService,
-    string: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_handle_parameters(service: &ZapService, string: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("String".to_string(), string);
-    super::call(
-        service,
-        "spider",
-        "action",
-        "setOptionHandleParameters",
-        params,
-    )
+    params.insert("String".to_string(), string.to_string());
+    super::call(service, "spider", "action", "setOptionHandleParameters", params).await
 }
 
 /**
  * Use actions [add|modify|remove]DomainAlwaysInScope instead.
- * Deprecated Option no longer in effective use.
 */
-pub fn set_option_scope_string(service: &ZapService, string: String) -> Result<Value, ZapApiError> {
+#[deprecated(note="Option no longer in effective use.")]
+pub async fn set_option_scope_string(service: &ZapService, string: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("String".to_string(), string);
-    super::call(service, "spider", "action", "setOptionScopeString", params)
+    params.insert("String".to_string(), string.to_string());
+    super::call(service, "spider", "action", "setOptionScopeString", params).await
 }
 
-pub fn set_option_skip_url_string(
-    service: &ZapService,
-    string: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_skip_url_string(service: &ZapService, string: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("String".to_string(), string);
-    super::call(
-        service,
-        "spider",
-        "action",
-        "setOptionSkipURLString",
-        params,
-    )
+    params.insert("String".to_string(), string.to_string());
+    super::call(service, "spider", "action", "setOptionSkipURLString", params).await
 }
 
-pub fn set_option_user_agent(service: &ZapService, string: String) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_user_agent(service: &ZapService, string: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("String".to_string(), string);
-    super::call(service, "spider", "action", "setOptionUserAgent", params)
+    params.insert("String".to_string(), string.to_string());
+    super::call(service, "spider", "action", "setOptionUserAgent", params).await
 }
 
 /**
  * Sets whether or not a spider process should accept cookies while spidering.
 */
-pub fn set_option_accept_cookies(
-    service: &ZapService,
-    boolean: String,
-) -> Result<Value, ZapApiError> {
+pub async fn set_option_accept_cookies(service: &ZapService, boolean: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Boolean".to_string(), boolean);
-    super::call(
-        service,
-        "spider",
-        "action",
-        "setOptionAcceptCookies",
-        params,
-    )
+    params.insert("Boolean".to_string(), boolean.to_string());
+    super::call(service, "spider", "action", "setOptionAcceptCookies", params).await
 }
 
-pub fn set_option_handle_o_data_parameters_visited(
-    service: &ZapService,
-    boolean: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_handle_o_data_parameters_visited(service: &ZapService, boolean: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Boolean".to_string(), boolean);
-    super::call(
-        service,
-        "spider",
-        "action",
-        "setOptionHandleODataParametersVisited",
-        params,
-    )
+    params.insert("Boolean".to_string(), boolean.to_string());
+    super::call(service, "spider", "action", "setOptionHandleODataParametersVisited", params).await
 }
 
 /**
  * Sets the maximum number of child nodes (per node) that can be crawled, 0 means no limit.
 */
-pub fn set_option_max_children(
-    service: &ZapService,
-    integer: String,
-) -> Result<Value, ZapApiError> {
+pub async fn set_option_max_children(service: &ZapService, integer: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Integer".to_string(), integer);
-    super::call(service, "spider", "action", "setOptionMaxChildren", params)
+    params.insert("Integer".to_string(), integer.to_string());
+    super::call(service, "spider", "action", "setOptionMaxChildren", params).await
 }
 
 /**
  * Sets the maximum depth the spider can crawl, 0 for unlimited depth.
 */
-pub fn set_option_max_depth(service: &ZapService, integer: String) -> Result<Value, ZapApiError> {
+pub async fn set_option_max_depth(service: &ZapService, integer: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Integer".to_string(), integer);
-    super::call(service, "spider", "action", "setOptionMaxDepth", params)
+    params.insert("Integer".to_string(), integer.to_string());
+    super::call(service, "spider", "action", "setOptionMaxDepth", params).await
 }
 
-pub fn set_option_max_duration(
-    service: &ZapService,
-    integer: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_max_duration(service: &ZapService, integer: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Integer".to_string(), integer);
-    super::call(service, "spider", "action", "setOptionMaxDuration", params)
+    params.insert("Integer".to_string(), integer.to_string());
+    super::call(service, "spider", "action", "setOptionMaxDuration", params).await
 }
 
 /**
  * Sets the maximum size, in bytes, that a response might have to be parsed. This allows the spider to skip big responses/files.
 */
-pub fn set_option_max_parse_size_bytes(
-    service: &ZapService,
-    integer: String,
-) -> Result<Value, ZapApiError> {
+pub async fn set_option_max_parse_size_bytes(service: &ZapService, integer: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Integer".to_string(), integer);
-    super::call(
-        service,
-        "spider",
-        "action",
-        "setOptionMaxParseSizeBytes",
-        params,
-    )
+    params.insert("Integer".to_string(), integer.to_string());
+    super::call(service, "spider", "action", "setOptionMaxParseSizeBytes", params).await
 }
 
-pub fn set_option_max_scans_in_ui(
-    service: &ZapService,
-    integer: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_max_scans_in_ui(service: &ZapService, integer: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Integer".to_string(), integer);
-    super::call(service, "spider", "action", "setOptionMaxScansInUI", params)
+    params.insert("Integer".to_string(), integer.to_string());
+    super::call(service, "spider", "action", "setOptionMaxScansInUI", params).await
 }
 
-pub fn set_option_parse_comments(
-    service: &ZapService,
-    boolean: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_parse_comments(service: &ZapService, boolean: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Boolean".to_string(), boolean);
-    super::call(
-        service,
-        "spider",
-        "action",
-        "setOptionParseComments",
-        params,
-    )
+    params.insert("Boolean".to_string(), boolean.to_string());
+    super::call(service, "spider", "action", "setOptionParseComments", params).await
 }
 
-pub fn set_option_parse_git(service: &ZapService, boolean: String) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_parse_git(service: &ZapService, boolean: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Boolean".to_string(), boolean);
-    super::call(service, "spider", "action", "setOptionParseGit", params)
+    params.insert("Boolean".to_string(), boolean.to_string());
+    super::call(service, "spider", "action", "setOptionParseGit", params).await
 }
 
-pub fn set_option_parse_robots_txt(
-    service: &ZapService,
-    boolean: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_parse_robots_txt(service: &ZapService, boolean: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Boolean".to_string(), boolean);
-    super::call(
-        service,
-        "spider",
-        "action",
-        "setOptionParseRobotsTxt",
-        params,
-    )
+    params.insert("Boolean".to_string(), boolean.to_string());
+    super::call(service, "spider", "action", "setOptionParseRobotsTxt", params).await
 }
 
-pub fn set_option_parse_svn_entries(
-    service: &ZapService,
-    boolean: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_parse_svn_entries(service: &ZapService, boolean: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Boolean".to_string(), boolean);
-    super::call(
-        service,
-        "spider",
-        "action",
-        "setOptionParseSVNEntries",
-        params,
-    )
+    params.insert("Boolean".to_string(), boolean.to_string());
+    super::call(service, "spider", "action", "setOptionParseSVNEntries", params).await
 }
 
-pub fn set_option_parse_sitemap_xml(
-    service: &ZapService,
-    boolean: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_parse_sitemap_xml(service: &ZapService, boolean: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Boolean".to_string(), boolean);
-    super::call(
-        service,
-        "spider",
-        "action",
-        "setOptionParseSitemapXml",
-        params,
-    )
+    params.insert("Boolean".to_string(), boolean.to_string());
+    super::call(service, "spider", "action", "setOptionParseSitemapXml", params).await
 }
 
-pub fn set_option_post_form(service: &ZapService, boolean: String) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_post_form(service: &ZapService, boolean: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Boolean".to_string(), boolean);
-    super::call(service, "spider", "action", "setOptionPostForm", params)
+    params.insert("Boolean".to_string(), boolean.to_string());
+    super::call(service, "spider", "action", "setOptionPostForm", params).await
 }
 
-pub fn set_option_process_form(
-    service: &ZapService,
-    boolean: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_process_form(service: &ZapService, boolean: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Boolean".to_string(), boolean);
-    super::call(service, "spider", "action", "setOptionProcessForm", params)
+    params.insert("Boolean".to_string(), boolean.to_string());
+    super::call(service, "spider", "action", "setOptionProcessForm", params).await
 }
 
-pub fn set_option_request_wait_time(
-    service: &ZapService,
-    integer: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_request_wait_time(service: &ZapService, integer: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Integer".to_string(), integer);
-    super::call(
-        service,
-        "spider",
-        "action",
-        "setOptionRequestWaitTime",
-        params,
-    )
+    params.insert("Integer".to_string(), integer.to_string());
+    super::call(service, "spider", "action", "setOptionRequestWaitTime", params).await
 }
 
 /**
  * Sets whether or not the 'Referer' header should be sent while spidering.
 */
-pub fn set_option_send_referer_header(
-    service: &ZapService,
-    boolean: String,
-) -> Result<Value, ZapApiError> {
+pub async fn set_option_send_referer_header(service: &ZapService, boolean: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Boolean".to_string(), boolean);
-    super::call(
-        service,
-        "spider",
-        "action",
-        "setOptionSendRefererHeader",
-        params,
-    )
+    params.insert("Boolean".to_string(), boolean.to_string());
+    super::call(service, "spider", "action", "setOptionSendRefererHeader", params).await
 }
 
-pub fn set_option_show_advanced_dialog(
-    service: &ZapService,
-    boolean: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_show_advanced_dialog(service: &ZapService, boolean: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Boolean".to_string(), boolean);
-    super::call(
-        service,
-        "spider",
-        "action",
-        "setOptionShowAdvancedDialog",
-        params,
-    )
+    params.insert("Boolean".to_string(), boolean.to_string());
+    super::call(service, "spider", "action", "setOptionShowAdvancedDialog", params).await
 }
 
-pub fn set_option_thread_count(
-    service: &ZapService,
-    integer: String,
-) -> Result<Value, ZapApiError> {
+/**
+ * 
+*/
+pub async fn set_option_thread_count(service: &ZapService, integer: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("Integer".to_string(), integer);
-    super::call(service, "spider", "action", "setOptionThreadCount", params)
+    params.insert("Integer".to_string(), integer.to_string());
+    super::call(service, "spider", "action", "setOptionThreadCount", params).await
 }
+
