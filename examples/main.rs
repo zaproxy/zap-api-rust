@@ -50,6 +50,7 @@ fn main() -> Result<(), ZapApiError> {
 
     version(&service).await?;
     spider(&service, &target_url).await?;
+    scan(&service, &target_url).await?;
 // Get the ZAP version
 async fn version(service: &ZapService) -> Result<(), ZapApiError> {
     let res = zap_api::core::version(service).await?;
@@ -85,10 +86,33 @@ async fn spider(service: &ZapService, target_url: &str) -> Result<(), ZapApiErro
     Ok(())
 }
 
+//Start the ZAP (std) scanner
+async fn scan(service: &ZapService, target_url: &str) -> Result<(), ZapApiError> {
+    println!("Starting the std scanner");
+    let res = zap_api::ascan::scan(
+        service, target_url, "true", // recurse
+        "true", // inscope only
+        "",     // scan policy name
+        "",     // method
+        "",     // post data
+        "",     // context ID
+    )
+    .await?;
+
+    let scan_id = res["scan"].as_str().unwrap().to_owned();
+    println!("Scan id : {}", scan_id);
+
+    // Loop until the scan has completed
+    let mut status: i32 = 0;
+    while status < 100 {
+        thread::sleep(time::Duration::from_secs(5));
+        let res = zap_api::ascan::status(&service, &scan_id).await?;
+        status = res["status"].as_str().unwrap().parse::<i32>().unwrap();
         println!("Scan status : {}", status);
     }
 
-    // TODO run active scanner
+    Ok(())
+}
 
     // TODO display alerts
 
