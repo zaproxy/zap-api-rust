@@ -47,6 +47,9 @@ fn main() -> Result<(), ZapApiError> {
         Ok(v) => zap_version = v["version"].to_string(),
         Err(e) => return Err(e),
     }
+    // Include target url in scope
+    zap_api::context::new_context(&service, "api").await?;
+    zap_api::context::include_in_context(&service, "api", "http://localhost:3000/*").await?;
 
     version(&service).await?;
     spider(&service, &target_url).await?;
