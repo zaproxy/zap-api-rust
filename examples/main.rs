@@ -49,6 +49,7 @@ fn main() -> Result<(), ZapApiError> {
     }
 
     version(&service).await?;
+    spider(&service, &target_url).await?;
 // Get the ZAP version
 async fn version(service: &ZapService) -> Result<(), ZapApiError> {
     let res = zap_api::core::version(service).await?;
@@ -58,35 +59,32 @@ async fn version(service: &ZapService) -> Result<(), ZapApiError> {
     Ok(())
 }
 
+//Start the ZAP (std) spider
+async fn spider(service: &ZapService, target_url: &str) -> Result<(), ZapApiError> {
     println!("Starting the std spider");
     let res = zap_api::spider::scan(
-        &service,
-        target_url,
-        "-1".to_string(),    // max children
-        "true".to_string(),  // recurse
-        "".to_string(),      // context name
-        "false".to_string(), // subtree only
-    );
-    let scan_id;
-    match res {
-        Ok(v) => scan_id = v["scan"].to_string(),
-        Err(e) => return Err(e),
-    }
+        service, target_url, "-1",    // max children
+        "true",  // recurse
+        "",      // context name
+        "false", // subtree only
+    )
+    .await?;
+
+    let scan_id = res["scan"].as_str().unwrap().to_owned();
     println!("Scan id : {}", scan_id);
 
     // Loop until the spider has completed
     let mut status: i32 = 0;
     while status < 100 {
-        thread::sleep(time::Duration::from_secs(1));
+        thread::sleep(time::Duration::from_secs(3));
+        let res = zap_api::spider::status(&service, &scan_id).await?;
+        status = res["status"].as_str().unwrap().parse::<i32>().unwrap();
+        println!("Spider status : {}", status);
+    }
 
-        let res = zap_api::spider::status(&service, scan_id.clone());
-        match res {
-            Ok(v) => {
-                let res_status = &v["status"].as_str().unwrap();
-                status = res_status.parse::<i32>().unwrap();
-            }
-            Err(e) => return Err(e),
-        }
+    Ok(())
+}
+
         println!("Scan status : {}", status);
     }
 
