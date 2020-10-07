@@ -48,9 +48,16 @@ fn main() -> Result<(), ZapApiError> {
         Err(e) => return Err(e),
     }
 
+    version(&service).await?;
+// Get the ZAP version
+async fn version(service: &ZapService) -> Result<(), ZapApiError> {
+    let res = zap_api::core::version(service).await?;
+    let zap_version = res["version"].to_string();
     println!("ZAP version : {}", zap_version);
 
-    // Start the ZAP (std) spider
+    Ok(())
+}
+
     println!("Starting the std spider");
     let res = zap_api::spider::scan(
         &service,
