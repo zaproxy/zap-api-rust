@@ -74,6 +74,8 @@ pub mod import_log_files;
 /// Import URLs
 pub mod importurls;
 
+/// Local Proxies
+pub mod local_proxies;
 
 /// OpenAPI
 pub mod openapi;
@@ -92,6 +94,9 @@ pub mod replacer;
 
 /// Reveal
 pub mod reveal;
+
+/// Rule Config
+pub mod rule_config;
 
 /// Script
 pub mod script;
