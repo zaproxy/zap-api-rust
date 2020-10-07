@@ -181,12 +181,12 @@ impl From<serde_json::error::Error> for ZapApiError {
     }
 }
 
-pub fn call(
+async fn call(
     service: &ZapService,
     component: &str,
     calltype: &str,
     method: &str,
-    _params: HashMap<String, String>,
+    params: HashMap<String, String>,
 ) -> Result<Value, ZapApiError> {
     let mut url = [&service.url, "JSON", component, calltype, method, ""].join("/");
     url.push_str("?");
@@ -196,10 +196,14 @@ pub fn call(
         .collect::<Vec<String>>()
         .join("&");
     url.push_str(&url_params);
+
+    let client = reqwest::Client::new()
         .get(&url)
         .header("X-ZAP-API-Key", &*service.api_key)
-        .send()?
-        .text()?;
+        .send()
+        .await?;
+
+    let text = client.text().await?;
     let json = serde_json::from_str(&text)?;
     Ok(json)
 }
