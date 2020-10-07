@@ -17,36 +17,31 @@
  * limitations under the License.
  */
 
-use std::{thread, time};
+use serde::{Deserialize, Serialize};
+use std::thread;
+use std::time;
 use zap_api::ZapApiError;
 use zap_api::ZapService;
-
-fn main() -> Result<(), ZapApiError> {
+#[tokio::main]
+async fn main() -> Result<(), ZapApiError> {
     /*
      * These examples assume:
-     *    ZAP is running on http://localhost:8090
+     *    ZAP is running on http://localhost:8080
      *    ZAP has an API key of "ChangeMe" (or its disabled)
-     *    Theres a suitable target app listening on localhost:8080
+     *    Theres a suitable target app listening on localhost:3000
      */
     // You will need a ZAP instance running for these API calls to work.
     // Change the URL if your ZAP instance is listening on another host / port and the API key if you are using one.
 
-    let zap_url = "http://localhost:8090".to_string();
+    let zap_url = "http://localhost:8080".to_string();
     let zap_api_key = "ChangeMe".to_string();
-    let target_url = "http://localhost:8080".to_string();
+    let target_url = "http://localhost:3000".to_string();
 
     let service = ZapService {
         url: zap_url,
         api_key: zap_api_key,
     };
 
-    // Get the ZAP version
-    let res = zap_api::core::version(&service);
-    let zap_version;
-    match res {
-        Ok(v) => zap_version = v["version"].to_string(),
-        Err(e) => return Err(e),
-    }
     // Include target url in scope
     zap_api::context::new_context(&service, "api").await?;
     zap_api::context::include_in_context(&service, "api", "http://localhost:3000/*").await?;
@@ -55,6 +50,10 @@ fn main() -> Result<(), ZapApiError> {
     spider(&service, &target_url).await?;
     scan(&service, &target_url).await?;
     alerts(&service, &target_url).await?;
+
+    Ok(())
+}
+
 // Get the ZAP version
 async fn version(service: &ZapService) -> Result<(), ZapApiError> {
     let res = zap_api::core::version(service).await?;
