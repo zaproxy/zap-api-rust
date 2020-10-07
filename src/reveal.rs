@@ -23,16 +23,13 @@ use serde_json::Value;
 use std::collections::HashMap;
 
 /**
- * This file was automatically generated.
- */
-/**
  * Tells if shows hidden fields and enables disabled fields
  * <p>
  * This component is optional and therefore the API will only work if it is installed
 */
-pub fn reveal(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn reveal(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "reveal", "view", "reveal", params)
+    super::call(service, "reveal", "view", "reveal", params).await
 }
 
 /**
@@ -40,8 +37,8 @@ pub fn reveal(service: &ZapService) -> Result<Value, ZapApiError> {
  * <p>
  * This component is optional and therefore the API will only work if it is installed
 */
-pub fn set_reveal(service: &ZapService, reveal: String) -> Result<Value, ZapApiError> {
+pub async fn set_reveal(service: &ZapService, reveal: String) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
     params.insert("reveal".to_string(), reveal);
-    super::call(service, "reveal", "action", "setReveal", params)
+    super::call(service, "reveal", "action", "setReveal", params).await
 }

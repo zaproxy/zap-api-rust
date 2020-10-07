@@ -23,70 +23,71 @@ use serde_json::Value;
 use std::collections::HashMap;
 
 /**
- * This file was automatically generated.
- */
-/**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn status(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn status(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ajaxSpider", "view", "status", params)
+    super::call(service, "ajaxSpider", "view", "status", params).await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn results(service: &ZapService, start: String, count: String) -> Result<Value, ZapApiError> {
+pub async fn results(
+    service: &ZapService,
+    start: String,
+    count: String,
+) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
     params.insert("start".to_string(), start);
     params.insert("count".to_string(), count);
-    super::call(service, "ajaxSpider", "view", "results", params)
+    super::call(service, "ajaxSpider", "view", "results", params).await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn number_of_results(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn number_of_results(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ajaxSpider", "view", "numberOfResults", params)
+    super::call(service, "ajaxSpider", "view", "numberOfResults", params).await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn full_results(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn full_results(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ajaxSpider", "view", "fullResults", params)
+    super::call(service, "ajaxSpider", "view", "fullResults", params).await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn option_browser_id(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn option_browser_id(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ajaxSpider", "view", "optionBrowserId", params)
+    super::call(service, "ajaxSpider", "view", "optionBrowserId", params).await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn option_event_wait(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn option_event_wait(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ajaxSpider", "view", "optionEventWait", params)
+    super::call(service, "ajaxSpider", "view", "optionEventWait", params).await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn option_max_crawl_depth(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn option_max_crawl_depth(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ajaxSpider", "view", "optionMaxCrawlDepth", params)
+    super::call(service, "ajaxSpider", "view", "optionMaxCrawlDepth", params).await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn option_max_crawl_states(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn option_max_crawl_states(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
     super::call(
         service,
@@ -95,20 +96,21 @@ pub fn option_max_crawl_states(service: &ZapService) -> Result<Value, ZapApiErro
         "optionMaxCrawlStates",
         params,
     )
+    .await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn option_max_duration(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn option_max_duration(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ajaxSpider", "view", "optionMaxDuration", params)
+    super::call(service, "ajaxSpider", "view", "optionMaxDuration", params).await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn option_number_of_browsers(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn option_number_of_browsers(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
     super::call(
         service,
@@ -117,20 +119,21 @@ pub fn option_number_of_browsers(service: &ZapService) -> Result<Value, ZapApiEr
         "optionNumberOfBrowsers",
         params,
     )
+    .await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn option_reload_wait(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn option_reload_wait(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ajaxSpider", "view", "optionReloadWait", params)
+    super::call(service, "ajaxSpider", "view", "optionReloadWait", params).await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn option_click_default_elems(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn option_click_default_elems(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
     super::call(
         service,
@@ -139,12 +142,13 @@ pub fn option_click_default_elems(service: &ZapService) -> Result<Value, ZapApiE
         "optionClickDefaultElems",
         params,
     )
+    .await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn option_click_elems_once(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn option_click_elems_once(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
     super::call(
         service,
@@ -153,14 +157,15 @@ pub fn option_click_elems_once(service: &ZapService) -> Result<Value, ZapApiErro
         "optionClickElemsOnce",
         params,
     )
+    .await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn option_random_inputs(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn option_random_inputs(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ajaxSpider", "view", "optionRandomInputs", params)
+    super::call(service, "ajaxSpider", "view", "optionRandomInputs", params).await
 }
 
 /**
@@ -168,7 +173,7 @@ pub fn option_random_inputs(service: &ZapService) -> Result<Value, ZapApiError> 
  * <p>
  * This component is optional and therefore the API will only work if it is installed
 */
-pub fn scan(
+pub async fn scan(
     service: &ZapService,
     url: String,
     inscope: String,
@@ -180,7 +185,7 @@ pub fn scan(
     params.insert("inScope".to_string(), inscope);
     params.insert("contextName".to_string(), contextname);
     params.insert("subtreeOnly".to_string(), subtreeonly);
-    super::call(service, "ajaxSpider", "action", "scan", params)
+    super::call(service, "ajaxSpider", "action", "scan", params).await
 }
 
 /**
@@ -188,7 +193,7 @@ pub fn scan(
  * <p>
  * This component is optional and therefore the API will only work if it is installed
 */
-pub fn scan_as_user(
+pub async fn scan_as_user(
     service: &ZapService,
     contextname: String,
     username: String,
@@ -200,21 +205,24 @@ pub fn scan_as_user(
     params.insert("userName".to_string(), username);
     params.insert("url".to_string(), url);
     params.insert("subtreeOnly".to_string(), subtreeonly);
-    super::call(service, "ajaxSpider", "action", "scanAsUser", params)
+    super::call(service, "ajaxSpider", "action", "scanAsUser", params).await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn stop(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn stop(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "ajaxSpider", "action", "stop", params)
+    super::call(service, "ajaxSpider", "action", "stop", params).await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn set_option_browser_id(service: &ZapService, string: String) -> Result<Value, ZapApiError> {
+pub async fn set_option_browser_id(
+    service: &ZapService,
+    string: String,
+) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
     params.insert("String".to_string(), string);
     super::call(
@@ -224,12 +232,13 @@ pub fn set_option_browser_id(service: &ZapService, string: String) -> Result<Val
         "setOptionBrowserId",
         params,
     )
+    .await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn set_option_click_default_elems(
+pub async fn set_option_click_default_elems(
     service: &ZapService,
     boolean: String,
 ) -> Result<Value, ZapApiError> {
@@ -242,12 +251,13 @@ pub fn set_option_click_default_elems(
         "setOptionClickDefaultElems",
         params,
     )
+    .await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn set_option_click_elems_once(
+pub async fn set_option_click_elems_once(
     service: &ZapService,
     boolean: String,
 ) -> Result<Value, ZapApiError> {
@@ -260,12 +270,16 @@ pub fn set_option_click_elems_once(
         "setOptionClickElemsOnce",
         params,
     )
+    .await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn set_option_event_wait(service: &ZapService, integer: String) -> Result<Value, ZapApiError> {
+pub async fn set_option_event_wait(
+    service: &ZapService,
+    integer: String,
+) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
     params.insert("Integer".to_string(), integer);
     super::call(
@@ -275,12 +289,13 @@ pub fn set_option_event_wait(service: &ZapService, integer: String) -> Result<Va
         "setOptionEventWait",
         params,
     )
+    .await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn set_option_max_crawl_depth(
+pub async fn set_option_max_crawl_depth(
     service: &ZapService,
     integer: String,
 ) -> Result<Value, ZapApiError> {
@@ -293,12 +308,13 @@ pub fn set_option_max_crawl_depth(
         "setOptionMaxCrawlDepth",
         params,
     )
+    .await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn set_option_max_crawl_states(
+pub async fn set_option_max_crawl_states(
     service: &ZapService,
     integer: String,
 ) -> Result<Value, ZapApiError> {
@@ -311,12 +327,13 @@ pub fn set_option_max_crawl_states(
         "setOptionMaxCrawlStates",
         params,
     )
+    .await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn set_option_max_duration(
+pub async fn set_option_max_duration(
     service: &ZapService,
     integer: String,
 ) -> Result<Value, ZapApiError> {
@@ -329,12 +346,13 @@ pub fn set_option_max_duration(
         "setOptionMaxDuration",
         params,
     )
+    .await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn set_option_number_of_browsers(
+pub async fn set_option_number_of_browsers(
     service: &ZapService,
     integer: String,
 ) -> Result<Value, ZapApiError> {
@@ -347,12 +365,13 @@ pub fn set_option_number_of_browsers(
         "setOptionNumberOfBrowsers",
         params,
     )
+    .await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn set_option_random_inputs(
+pub async fn set_option_random_inputs(
     service: &ZapService,
     boolean: String,
 ) -> Result<Value, ZapApiError> {
@@ -365,12 +384,16 @@ pub fn set_option_random_inputs(
         "setOptionRandomInputs",
         params,
     )
+    .await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn set_option_reload_wait(service: &ZapService, integer: String) -> Result<Value, ZapApiError> {
+pub async fn set_option_reload_wait(
+    service: &ZapService,
+    integer: String,
+) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
     params.insert("Integer".to_string(), integer);
     super::call(
@@ -380,4 +403,5 @@ pub fn set_option_reload_wait(service: &ZapService, integer: String) -> Result<V
         "setOptionReloadWait",
         params,
     )
+    .await
 }

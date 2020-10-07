@@ -23,15 +23,12 @@ use serde_json::Value;
 use std::collections::HashMap;
 
 /**
- * This file was automatically generated.
- */
-/**
  * Imports URLs (one per line) from the file with the given file system path.
  * <p>
  * This component is optional and therefore the API will only work if it is installed
 */
-pub fn importurls(service: &ZapService, filepath: String) -> Result<Value, ZapApiError> {
+pub async fn importurls(service: &ZapService, filepath: String) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
     params.insert("filePath".to_string(), filepath);
-    super::call(service, "importurls", "action", "importurls", params)
+    super::call(service, "importurls", "action", "importurls", params).await
 }

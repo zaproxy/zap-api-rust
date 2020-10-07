@@ -23,17 +23,14 @@ use serde_json::Value;
 use std::collections::HashMap;
 
 /**
- * This file was automatically generated.
- */
-/**
  * Import an Open API definition from a local file.
  * <p>
  * This component is optional and therefore the API will only work if it is installed
 */
-pub fn import_file(service: &ZapService, file: String) -> Result<Value, ZapApiError> {
+pub async fn import_file(service: &ZapService, file: String) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
     params.insert("file".to_string(), file);
-    super::call(service, "openapi", "action", "importFile", params)
+    super::call(service, "openapi", "action", "importFile", params).await
 }
 
 /**
@@ -41,7 +38,7 @@ pub fn import_file(service: &ZapService, file: String) -> Result<Value, ZapApiEr
  * <p>
  * This component is optional and therefore the API will only work if it is installed
 */
-pub fn import_url(
+pub async fn import_url(
     service: &ZapService,
     url: String,
     hostoverride: String,
@@ -49,5 +46,5 @@ pub fn import_url(
     let mut params = HashMap::new();
     params.insert("url".to_string(), url);
     params.insert("hostOverride".to_string(), hostoverride);
-    super::call(service, "openapi", "action", "importUrl", params)
+    super::call(service, "openapi", "action", "importUrl", params).await
 }

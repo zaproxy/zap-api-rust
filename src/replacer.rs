@@ -23,16 +23,13 @@ use serde_json::Value;
 use std::collections::HashMap;
 
 /**
- * This file was automatically generated.
- */
-/**
  * Returns full details of all of the rules
  * <p>
  * This component is optional and therefore the API will only work if it is installed
 */
-pub fn rules(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn rules(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "replacer", "view", "rules", params)
+    super::call(service, "replacer", "view", "rules", params).await
 }
 
 /**
@@ -41,7 +38,7 @@ pub fn rules(service: &ZapService) -> Result<Value, ZapApiError> {
  * This component is optional and therefore the API will only work if it is installed
 */
 #[allow(clippy::too_many_arguments)]
-pub fn add_rule(
+pub async fn add_rule(
     service: &ZapService,
     description: String,
     enabled: String,
@@ -59,7 +56,7 @@ pub fn add_rule(
     params.insert("matchString".to_string(), matchstring);
     params.insert("replacement".to_string(), replacement);
     params.insert("initiators".to_string(), initiators);
-    super::call(service, "replacer", "action", "addRule", params)
+    super::call(service, "replacer", "action", "addRule", params).await
 }
 
 /**
@@ -67,10 +64,10 @@ pub fn add_rule(
  * <p>
  * This component is optional and therefore the API will only work if it is installed
 */
-pub fn remove_rule(service: &ZapService, description: String) -> Result<Value, ZapApiError> {
+pub async fn remove_rule(service: &ZapService, description: String) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
     params.insert("description".to_string(), description);
-    super::call(service, "replacer", "action", "removeRule", params)
+    super::call(service, "replacer", "action", "removeRule", params).await
 }
 
 /**
@@ -78,7 +75,7 @@ pub fn remove_rule(service: &ZapService, description: String) -> Result<Value, Z
  * <p>
  * This component is optional and therefore the API will only work if it is installed
 */
-pub fn set_enabled(
+pub async fn set_enabled(
     service: &ZapService,
     description: String,
     bool: String,
@@ -86,5 +83,5 @@ pub fn set_enabled(
     let mut params = HashMap::new();
     params.insert("description".to_string(), description);
     params.insert("bool".to_string(), bool);
-    super::call(service, "replacer", "action", "setEnabled", params)
+    super::call(service, "replacer", "action", "setEnabled", params).await
 }

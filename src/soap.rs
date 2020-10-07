@@ -23,17 +23,14 @@ use serde_json::Value;
 use std::collections::HashMap;
 
 /**
- * This file was automatically generated.
- */
-/**
  * Import a WSDL definition from local file.
  * <p>
  * This component is optional and therefore the API will only work if it is installed
 */
-pub fn import_file(service: &ZapService, file: String) -> Result<Value, ZapApiError> {
+pub async fn import_file(service: &ZapService, file: String) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
     params.insert("file".to_string(), file);
-    super::call(service, "soap", "action", "importFile", params)
+    super::call(service, "soap", "action", "importFile", params).await
 }
 
 /**
@@ -41,8 +38,8 @@ pub fn import_file(service: &ZapService, file: String) -> Result<Value, ZapApiEr
  * <p>
  * This component is optional and therefore the API will only work if it is installed
 */
-pub fn import_url(service: &ZapService, url: String) -> Result<Value, ZapApiError> {
+pub async fn import_url(service: &ZapService, url: String) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
     params.insert("url".to_string(), url);
-    super::call(service, "soap", "action", "importUrl", params)
+    super::call(service, "soap", "action", "importUrl", params).await
 }

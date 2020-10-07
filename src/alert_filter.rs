@@ -23,17 +23,17 @@ use serde_json::Value;
 use std::collections::HashMap;
 
 /**
- * This file was automatically generated.
- */
-/**
  * Lists the alert filters of the context with the given ID.
  * <p>
  * This component is optional and therefore the API will only work if it is installed
 */
-pub fn alert_filter_list(service: &ZapService, contextid: String) -> Result<Value, ZapApiError> {
+pub async fn alert_filter_list(
+    service: &ZapService,
+    contextid: String,
+) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
     params.insert("contextId".to_string(), contextid);
-    super::call(service, "alertFilter", "view", "alertFilterList", params)
+    super::call(service, "alertFilter", "view", "alertFilterList", params).await
 }
 
 /**
@@ -42,7 +42,7 @@ pub fn alert_filter_list(service: &ZapService, contextid: String) -> Result<Valu
  * This component is optional and therefore the API will only work if it is installed
 */
 #[allow(clippy::too_many_arguments)]
-pub fn add_alert_filter(
+pub async fn add_alert_filter(
     service: &ZapService,
     contextid: String,
     ruleid: String,
@@ -60,7 +60,7 @@ pub fn add_alert_filter(
     params.insert("urlIsRegex".to_string(), urlisregex);
     params.insert("parameter".to_string(), parameter);
     params.insert("enabled".to_string(), enabled);
-    super::call(service, "alertFilter", "action", "addAlertFilter", params)
+    super::call(service, "alertFilter", "action", "addAlertFilter", params).await
 }
 
 /**
@@ -69,7 +69,7 @@ pub fn add_alert_filter(
  * This component is optional and therefore the API will only work if it is installed
 */
 #[allow(clippy::too_many_arguments)]
-pub fn remove_alert_filter(
+pub async fn remove_alert_filter(
     service: &ZapService,
     contextid: String,
     ruleid: String,
@@ -94,4 +94,5 @@ pub fn remove_alert_filter(
         "removeAlertFilter",
         params,
     )
+    .await
 }
