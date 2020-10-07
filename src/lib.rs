@@ -16,51 +16,147 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+//! The Rust implementation to access the OWASP ZAP [API](https://www.zaproxy.org/docs/api/).
+//!
+//! For more information about OWASP ZAP, please visit [zaproxy.org](https://www.zaproxy.org)
+
+#![forbid(unsafe_code, future_incompatible)]
+#![deny(missing_debug_implementations, nonstandard_style, rust_2018_idioms)]
+#![warn(missing_docs)]
+
 use serde_json::Value;
 use std::collections::HashMap;
 trait Serialize {}
 
+/// anti-CSRF tokens
 pub mod acsrf;
+
+/// AJAX Spider
 pub mod ajax_spider;
+
+/// Alert
 pub mod alert;
+
+/// Alert Filter
 pub mod alert_filter;
+
+/// Active Scan
 pub mod ascan;
+
+/// Authentication
 pub mod authentication;
+
+/// Authorization
 pub mod authorization;
+
+/// Auto Update
 pub mod autoupdate;
+
+/// Break
 pub mod brk;
+
+/// Context
 pub mod context;
+
+/// Core
 pub mod core;
+
+/// Forced User
 pub mod forced_user;
+
+/// HTTP Sessions
 pub mod http_sessions;
+
+/// Import Log Files
 pub mod import_log_files;
+
+/// Import URLs
 pub mod importurls;
+
+
+/// OpenAPI
 pub mod openapi;
+
+/// Parameters
 pub mod params;
+
+/// Plug-n-Hack
 pub mod pnh;
+
+/// Passive Scan
 pub mod pscan;
+
+///  Replacer
 pub mod replacer;
+
+/// Reveal
 pub mod reveal;
+
+/// Script
 pub mod script;
+
+/// Search
 pub mod search;
+
+/// Selenium
 pub mod selenium;
+
+/// Session Management
 pub mod session_management;
+
+/// SOAP
 pub mod soap;
+
+/// Spider
 pub mod spider;
+
+/// Stats
 pub mod stats;
+
+/// Users
 pub mod users;
+
+/// WebSockets
 pub mod websocket;
 
+/// ZAP API Service.
+///
+/// # Example
+///
+/// ```
+/// let zap_url = "http://localhost:8080".to_string();
+/// let zap_api_key = "ChangeMe".to_string();
+///
+/// let service = ZapService {
+///     url: zap_url,
+///     api_key: zap_api_key,
+/// };
+/// ```
 #[derive(Debug)]
 pub struct ZapService {
-    pub url: String,     // base url of the ZAP API, eg http://localhost:8080
-    pub api_key: String, // API key used for connecting securely to the API
+    /// Base url of the ZAP API, eg http://localhost:8080
+    pub url: String,
+
+    /// API key used for connecting securely to the API
+    pub api_key: String,
 }
 
+impl ZapService {
+    /// Create a new instance of `ZapService`.
+    pub fn new(url: String, api_key: String) -> Self {
+        Self { url, api_key }
+    }
+}
+
+/// ZAP API Error.
 #[derive(Debug)]
 pub struct ZapApiError {
-    kind: String,    // type of the error
-    message: String, // error message
+    // Type of the error
+    kind: String,
+
+    // Error message
+    message: String,
 }
 
 impl From<reqwest::Error> for ZapApiError {
