@@ -1,0 +1,15 @@
+name: Build Binaries
+on: 
+  release:
+    types: # This configuration does not affect the page_build event above
+      - created
+jobs:
+  push_to_cratesio:
+    name: Crates.io
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions-rs/cargo@v1
+        with:
+          command: publish
+          args: --token ${{ secrets.CARGO_TOKEN }}
