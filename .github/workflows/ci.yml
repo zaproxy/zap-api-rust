@@ -1,6 +1,6 @@
 on: [pull_request]
 
-name: Running Tests
+name: Rust CI
 
 jobs:
   build_and_test:

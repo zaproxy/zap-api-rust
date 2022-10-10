@@ -1,4 +1,5 @@
-name: Build Binaries
+name: Release Binaries
+
 on: 
   release:
     types: # This configuration does not affect the page_build event above
