@@ -2,7 +2,7 @@ name: Release Binaries
 
 on: 
   release:
-    types: # This configuration does not affect the page_build event above
+    types: 
       - created
 jobs:
   push_to_cratesio:
