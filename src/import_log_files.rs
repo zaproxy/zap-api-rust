@@ -23,12 +23,9 @@ use serde_json::Value;
 use std::collections::HashMap;
 
 /**
- * This file was automatically generated.
- */
-/**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn import_zap_log_from_file(
+pub async fn import_zap_log_from_file(
     service: &ZapService,
     filepath: String,
 ) -> Result<Value, ZapApiError> {
@@ -41,12 +38,13 @@ pub fn import_zap_log_from_file(
         "ImportZAPLogFromFile",
         params,
     )
+    .await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn import_mod_security_log_from_file(
+pub async fn import_mod_security_log_from_file(
     service: &ZapService,
     filepath: String,
 ) -> Result<Value, ZapApiError> {
@@ -59,12 +57,13 @@ pub fn import_mod_security_log_from_file(
         "ImportModSecurityLogFromFile",
         params,
     )
+    .await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn import_zap_http_request_response_pair(
+pub async fn import_zap_http_request_response_pair(
     service: &ZapService,
     httprequest: String,
     httpresponse: String,
@@ -79,12 +78,13 @@ pub fn import_zap_http_request_response_pair(
         "ImportZAPHttpRequestResponsePair",
         params,
     )
+    .await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn post_mod_security_audit_event(
+pub async fn post_mod_security_audit_event(
     service: &ZapService,
     auditeventstring: String,
 ) -> Result<Value, ZapApiError> {
@@ -97,12 +97,13 @@ pub fn post_mod_security_audit_event(
         "PostModSecurityAuditEvent",
         params,
     )
+    .await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn other_post_mod_security_audit_event(
+pub async fn other_post_mod_security_audit_event(
     service: &ZapService,
     auditeventstring: String,
 ) -> Result<Value, ZapApiError> {
@@ -115,4 +116,5 @@ pub fn other_post_mod_security_audit_event(
         "OtherPostModSecurityAuditEvent",
         params,
     )
+    .await
 }

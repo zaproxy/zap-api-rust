@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2019 the ZAP development team
+ * Copyright 2020 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,10 +17,12 @@
  * limitations under the License.
  */
 
+
 use super::ZapApiError;
 use super::ZapService;
 use serde_json::Value;
 use std::collections::HashMap;
+
 
 /**
  * This file was automatically generated.
@@ -28,8 +30,9 @@ use std::collections::HashMap;
 /**
  * Shows the parameters for the specified site, or for all sites if the site is not specified
 */
-pub fn params(service: &ZapService, site: String) -> Result<Value, ZapApiError> {
+pub async fn params(service: &ZapService, site: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("site".to_string(), site);
-    super::call(service, "params", "view", "params", params)
+    params.insert("site".to_string(), site.to_string());
+    super::call(service, "params", "view", "params", params).await
 }
+

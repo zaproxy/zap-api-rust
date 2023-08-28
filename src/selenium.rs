@@ -23,14 +23,11 @@ use serde_json::Value;
 use std::collections::HashMap;
 
 /**
- * This file was automatically generated.
- */
-/**
  * Returns the current path to ChromeDriver
  * <p>
  * This component is optional and therefore the API will only work if it is installed
 */
-pub fn option_chrome_driver_path(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn option_chrome_driver_path(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
     super::call(
         service,
@@ -39,6 +36,7 @@ pub fn option_chrome_driver_path(service: &ZapService) -> Result<Value, ZapApiEr
         "optionChromeDriverPath",
         params,
     )
+    .await
 }
 
 /**
@@ -46,7 +44,7 @@ pub fn option_chrome_driver_path(service: &ZapService) -> Result<Value, ZapApiEr
  * <p>
  * This component is optional and therefore the API will only work if it is installed
 */
-pub fn option_firefox_binary_path(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn option_firefox_binary_path(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
     super::call(
         service,
@@ -55,6 +53,7 @@ pub fn option_firefox_binary_path(service: &ZapService) -> Result<Value, ZapApiE
         "optionFirefoxBinaryPath",
         params,
     )
+    .await
 }
 
 /**
@@ -62,7 +61,7 @@ pub fn option_firefox_binary_path(service: &ZapService) -> Result<Value, ZapApiE
  * <p>
  * This component is optional and therefore the API will only work if it is installed
 */
-pub fn option_firefox_driver_path(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn option_firefox_driver_path(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
     super::call(
         service,
@@ -71,14 +70,15 @@ pub fn option_firefox_driver_path(service: &ZapService) -> Result<Value, ZapApiE
         "optionFirefoxDriverPath",
         params,
     )
+    .await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn option_ie_driver_path(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn option_ie_driver_path(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "selenium", "view", "optionIeDriverPath", params)
+    super::call(service, "selenium", "view", "optionIeDriverPath", params).await
 }
 
 /**
@@ -86,7 +86,7 @@ pub fn option_ie_driver_path(service: &ZapService) -> Result<Value, ZapApiError>
  * <p>
  * This component is optional and therefore the API will only work if it is installed
 */
-pub fn option_phantom_js_binary_path(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn option_phantom_js_binary_path(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
     super::call(
         service,
@@ -95,6 +95,7 @@ pub fn option_phantom_js_binary_path(service: &ZapService) -> Result<Value, ZapA
         "optionPhantomJsBinaryPath",
         params,
     )
+    .await
 }
 
 /**
@@ -102,7 +103,7 @@ pub fn option_phantom_js_binary_path(service: &ZapService) -> Result<Value, ZapA
  * <p>
  * This component is optional and therefore the API will only work if it is installed
 */
-pub fn set_option_chrome_driver_path(
+pub async fn set_option_chrome_driver_path(
     service: &ZapService,
     string: String,
 ) -> Result<Value, ZapApiError> {
@@ -115,6 +116,7 @@ pub fn set_option_chrome_driver_path(
         "setOptionChromeDriverPath",
         params,
     )
+    .await
 }
 
 /**
@@ -122,7 +124,7 @@ pub fn set_option_chrome_driver_path(
  * <p>
  * This component is optional and therefore the API will only work if it is installed
 */
-pub fn set_option_firefox_binary_path(
+pub async fn set_option_firefox_binary_path(
     service: &ZapService,
     string: String,
 ) -> Result<Value, ZapApiError> {
@@ -135,6 +137,7 @@ pub fn set_option_firefox_binary_path(
         "setOptionFirefoxBinaryPath",
         params,
     )
+    .await
 }
 
 /**
@@ -142,7 +145,7 @@ pub fn set_option_firefox_binary_path(
  * <p>
  * This component is optional and therefore the API will only work if it is installed
 */
-pub fn set_option_firefox_driver_path(
+pub async fn set_option_firefox_driver_path(
     service: &ZapService,
     string: String,
 ) -> Result<Value, ZapApiError> {
@@ -155,12 +158,13 @@ pub fn set_option_firefox_driver_path(
         "setOptionFirefoxDriverPath",
         params,
     )
+    .await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn set_option_ie_driver_path(
+pub async fn set_option_ie_driver_path(
     service: &ZapService,
     string: String,
 ) -> Result<Value, ZapApiError> {
@@ -173,6 +177,7 @@ pub fn set_option_ie_driver_path(
         "setOptionIeDriverPath",
         params,
     )
+    .await
 }
 
 /**
@@ -180,7 +185,7 @@ pub fn set_option_ie_driver_path(
  * <p>
  * This component is optional and therefore the API will only work if it is installed
 */
-pub fn set_option_phantom_js_binary_path(
+pub async fn set_option_phantom_js_binary_path(
     service: &ZapService,
     string: String,
 ) -> Result<Value, ZapApiError> {
@@ -193,4 +198,5 @@ pub fn set_option_phantom_js_binary_path(
         "setOptionPhantomJsBinaryPath",
         params,
     )
+    .await
 }

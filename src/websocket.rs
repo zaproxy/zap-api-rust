@@ -23,16 +23,13 @@ use serde_json::Value;
 use std::collections::HashMap;
 
 /**
- * This file was automatically generated.
- */
-/**
  * Returns all of the registered web socket channels
  * <p>
  * This component is optional and therefore the API will only work if it is installed
 */
-pub fn channels(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn channels(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "websocket", "view", "channels", params)
+    super::call(service, "websocket", "view", "channels", params).await
 }
 
 /**
@@ -40,7 +37,7 @@ pub fn channels(service: &ZapService) -> Result<Value, ZapApiError> {
  * <p>
  * This component is optional and therefore the API will only work if it is installed
 */
-pub fn message(
+pub async fn message(
     service: &ZapService,
     channelid: String,
     messageid: String,
@@ -48,7 +45,7 @@ pub fn message(
     let mut params = HashMap::new();
     params.insert("channelId".to_string(), channelid);
     params.insert("messageId".to_string(), messageid);
-    super::call(service, "websocket", "view", "message", params)
+    super::call(service, "websocket", "view", "message", params).await
 }
 
 /**
@@ -56,7 +53,7 @@ pub fn message(
  * <p>
  * This component is optional and therefore the API will only work if it is installed
 */
-pub fn messages(
+pub async fn messages(
     service: &ZapService,
     channelid: String,
     start: String,
@@ -68,7 +65,7 @@ pub fn messages(
     params.insert("start".to_string(), start);
     params.insert("count".to_string(), count);
     params.insert("payloadPreviewLength".to_string(), payloadpreviewlength);
-    super::call(service, "websocket", "view", "messages", params)
+    super::call(service, "websocket", "view", "messages", params).await
 }
 
 /**
@@ -76,9 +73,9 @@ pub fn messages(
  * <p>
  * This component is optional and therefore the API will only work if it is installed
 */
-pub fn break_text_message(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn break_text_message(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "websocket", "view", "breakTextMessage", params)
+    super::call(service, "websocket", "view", "breakTextMessage", params).await
 }
 
 /**
@@ -86,7 +83,7 @@ pub fn break_text_message(service: &ZapService) -> Result<Value, ZapApiError> {
  * <p>
  * This component is optional and therefore the API will only work if it is installed
 */
-pub fn send_text_message(
+pub async fn send_text_message(
     service: &ZapService,
     channelid: String,
     outgoing: String,
@@ -96,7 +93,7 @@ pub fn send_text_message(
     params.insert("channelId".to_string(), channelid);
     params.insert("outgoing".to_string(), outgoing);
     params.insert("message".to_string(), message);
-    super::call(service, "websocket", "action", "sendTextMessage", params)
+    super::call(service, "websocket", "action", "sendTextMessage", params).await
 }
 
 /**
@@ -104,7 +101,7 @@ pub fn send_text_message(
  * <p>
  * This component is optional and therefore the API will only work if it is installed
 */
-pub fn set_break_text_message(
+pub async fn set_break_text_message(
     service: &ZapService,
     message: String,
     outgoing: String,
@@ -119,4 +116,5 @@ pub fn set_break_text_message(
         "setBreakTextMessage",
         params,
     )
+    .await
 }

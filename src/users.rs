@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2019 the ZAP development team
+ * Copyright 2020 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,10 +17,12 @@
  * limitations under the License.
  */
 
+
 use super::ZapApiError;
 use super::ZapService;
 use serde_json::Value;
 use std::collections::HashMap;
+
 
 /**
  * This file was automatically generated.
@@ -28,145 +30,91 @@ use std::collections::HashMap;
 /**
  * Gets a list of users that belong to the context with the given ID, or all users if none provided.
 */
-pub fn users_list(service: &ZapService, contextid: String) -> Result<Value, ZapApiError> {
+pub async fn users_list(service: &ZapService, contextid: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("contextId".to_string(), contextid);
-    super::call(service, "users", "view", "usersList", params)
+    params.insert("contextId".to_string(), contextid.to_string());
+    super::call(service, "users", "view", "usersList", params).await
 }
 
 /**
  * Gets the data of the user with the given ID that belongs to the context with the given ID.
 */
-pub fn get_user_by_id(
-    service: &ZapService,
-    contextid: String,
-    userid: String,
-) -> Result<Value, ZapApiError> {
+pub async fn get_user_by_id(service: &ZapService, contextid: &str, userid: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("contextId".to_string(), contextid);
-    params.insert("userId".to_string(), userid);
-    super::call(service, "users", "view", "getUserById", params)
+    params.insert("contextId".to_string(), contextid.to_string());
+    params.insert("userId".to_string(), userid.to_string());
+    super::call(service, "users", "view", "getUserById", params).await
 }
 
 /**
  * Gets the configuration parameters for the credentials of the context with the given ID.
 */
-pub fn get_authentication_credentials_config_params(
-    service: &ZapService,
-    contextid: String,
-) -> Result<Value, ZapApiError> {
+pub async fn get_authentication_credentials_config_params(service: &ZapService, contextid: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("contextId".to_string(), contextid);
-    super::call(
-        service,
-        "users",
-        "view",
-        "getAuthenticationCredentialsConfigParams",
-        params,
-    )
+    params.insert("contextId".to_string(), contextid.to_string());
+    super::call(service, "users", "view", "getAuthenticationCredentialsConfigParams", params).await
 }
 
 /**
  * Gets the authentication credentials of the user with given ID that belongs to the context with the given ID.
 */
-pub fn get_authentication_credentials(
-    service: &ZapService,
-    contextid: String,
-    userid: String,
-) -> Result<Value, ZapApiError> {
+pub async fn get_authentication_credentials(service: &ZapService, contextid: &str, userid: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("contextId".to_string(), contextid);
-    params.insert("userId".to_string(), userid);
-    super::call(
-        service,
-        "users",
-        "view",
-        "getAuthenticationCredentials",
-        params,
-    )
+    params.insert("contextId".to_string(), contextid.to_string());
+    params.insert("userId".to_string(), userid.to_string());
+    super::call(service, "users", "view", "getAuthenticationCredentials", params).await
 }
 
 /**
  * Creates a new user with the given name for the context with the given ID.
 */
-pub fn new_user(
-    service: &ZapService,
-    contextid: String,
-    name: String,
-) -> Result<Value, ZapApiError> {
+pub async fn new_user(service: &ZapService, contextid: &str, name: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("contextId".to_string(), contextid);
-    params.insert("name".to_string(), name);
-    super::call(service, "users", "action", "newUser", params)
+    params.insert("contextId".to_string(), contextid.to_string());
+    params.insert("name".to_string(), name.to_string());
+    super::call(service, "users", "action", "newUser", params).await
 }
 
 /**
  * Removes the user with the given ID that belongs to the context with the given ID.
 */
-pub fn remove_user(
-    service: &ZapService,
-    contextid: String,
-    userid: String,
-) -> Result<Value, ZapApiError> {
+pub async fn remove_user(service: &ZapService, contextid: &str, userid: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("contextId".to_string(), contextid);
-    params.insert("userId".to_string(), userid);
-    super::call(service, "users", "action", "removeUser", params)
+    params.insert("contextId".to_string(), contextid.to_string());
+    params.insert("userId".to_string(), userid.to_string());
+    super::call(service, "users", "action", "removeUser", params).await
 }
 
 /**
  * Sets whether or not the user, with the given ID that belongs to the context with the given ID, should be enabled.
 */
-pub fn set_user_enabled(
-    service: &ZapService,
-    contextid: String,
-    userid: String,
-    enabled: String,
-) -> Result<Value, ZapApiError> {
+pub async fn set_user_enabled(service: &ZapService, contextid: &str, userid: &str, enabled: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("contextId".to_string(), contextid);
-    params.insert("userId".to_string(), userid);
-    params.insert("enabled".to_string(), enabled);
-    super::call(service, "users", "action", "setUserEnabled", params)
+    params.insert("contextId".to_string(), contextid.to_string());
+    params.insert("userId".to_string(), userid.to_string());
+    params.insert("enabled".to_string(), enabled.to_string());
+    super::call(service, "users", "action", "setUserEnabled", params).await
 }
 
 /**
  * Renames the user with the given ID that belongs to the context with the given ID.
 */
-pub fn set_user_name(
-    service: &ZapService,
-    contextid: String,
-    userid: String,
-    name: String,
-) -> Result<Value, ZapApiError> {
+pub async fn set_user_name(service: &ZapService, contextid: &str, userid: &str, name: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("contextId".to_string(), contextid);
-    params.insert("userId".to_string(), userid);
-    params.insert("name".to_string(), name);
-    super::call(service, "users", "action", "setUserName", params)
+    params.insert("contextId".to_string(), contextid.to_string());
+    params.insert("userId".to_string(), userid.to_string());
+    params.insert("name".to_string(), name.to_string());
+    super::call(service, "users", "action", "setUserName", params).await
 }
 
 /**
  * Sets the authentication credentials for the user with the given ID that belongs to the context with the given ID.
 */
-pub fn set_authentication_credentials(
-    service: &ZapService,
-    contextid: String,
-    userid: String,
-    authcredentialsconfigparams: String,
-) -> Result<Value, ZapApiError> {
+pub async fn set_authentication_credentials(service: &ZapService, contextid: &str, userid: &str, authcredentialsconfigparams: &str) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
-    params.insert("contextId".to_string(), contextid);
-    params.insert("userId".to_string(), userid);
-    params.insert(
-        "authCredentialsConfigParams".to_string(),
-        authcredentialsconfigparams,
-    );
-    super::call(
-        service,
-        "users",
-        "action",
-        "setAuthenticationCredentials",
-        params,
-    )
+    params.insert("contextId".to_string(), contextid.to_string());
+    params.insert("userId".to_string(), userid.to_string());
+    params.insert("authCredentialsConfigParams".to_string(), authcredentialsconfigparams.to_string());
+    super::call(service, "users", "action", "setAuthenticationCredentials", params).await
 }
+

@@ -23,73 +23,74 @@ use serde_json::Value;
 use std::collections::HashMap;
 
 /**
- * This file was automatically generated.
- */
-/**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn monitor(service: &ZapService, id: String, message: String) -> Result<Value, ZapApiError> {
+pub async fn monitor(
+    service: &ZapService,
+    id: String,
+    message: String,
+) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
     params.insert("id".to_string(), id);
     params.insert("message".to_string(), message);
-    super::call(service, "pnh", "action", "monitor", params)
+    super::call(service, "pnh", "action", "monitor", params).await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn oracle(service: &ZapService, id: String) -> Result<Value, ZapApiError> {
+pub async fn oracle(service: &ZapService, id: String) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
     params.insert("id".to_string(), id);
-    super::call(service, "pnh", "action", "oracle", params)
+    super::call(service, "pnh", "action", "oracle", params).await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn start_monitoring(service: &ZapService, url: String) -> Result<Value, ZapApiError> {
+pub async fn start_monitoring(service: &ZapService, url: String) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
     params.insert("url".to_string(), url);
-    super::call(service, "pnh", "action", "startMonitoring", params)
+    super::call(service, "pnh", "action", "startMonitoring", params).await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn stop_monitoring(service: &ZapService, id: String) -> Result<Value, ZapApiError> {
+pub async fn stop_monitoring(service: &ZapService, id: String) -> Result<Value, ZapApiError> {
     let mut params = HashMap::new();
     params.insert("id".to_string(), id);
-    super::call(service, "pnh", "action", "stopMonitoring", params)
+    super::call(service, "pnh", "action", "stopMonitoring", params).await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn pnh(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn pnh(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "pnh", "other", "pnh", params)
+    super::call(service, "pnh", "other", "pnh", params).await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn manifest(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn manifest(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "pnh", "other", "manifest", params)
+    super::call(service, "pnh", "other", "manifest", params).await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn service(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn service(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "pnh", "other", "service", params)
+    super::call(service, "pnh", "other", "service", params).await
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  */
-pub fn fx_pnh_xpi(service: &ZapService) -> Result<Value, ZapApiError> {
+pub async fn fx_pnh_xpi(service: &ZapService) -> Result<Value, ZapApiError> {
     let params = HashMap::new();
-    super::call(service, "pnh", "other", "fx_pnh.xpi", params)
+    super::call(service, "pnh", "other", "fx_pnh.xpi", params).await
 }
